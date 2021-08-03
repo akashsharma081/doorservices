@@ -12,12 +12,13 @@ export default function SignupCustomer(props) {
     const [role, setrole] = useState("");
 
     var stId = props.match.params.id;
+   
 
     useEffect(() => {
       if(stId){
        // here we fetch new api with which have id register and match with id 
        // remember always the stId exist if you dont apply than this calling no sense 
-        axios.get('http://localhost:3001/users-by-id'+stId).then(
+        axios.get('http://localhost:3001/users-by-id?id='+stId).then(
             (res)=>{
                 console.log(res.data.data); 
                 setname(res.data.data[0].name);
@@ -53,6 +54,7 @@ export default function SignupCustomer(props) {
         {   s._id=stId;
             axios.post('http://localhost:3001/update-users',s).then((res)=>{
             console.log(res.data); 
+            alert(res.data);
             })
         }
         else
@@ -60,6 +62,7 @@ export default function SignupCustomer(props) {
             console.log(s)
             axios.post('http://localhost:3001/create-users',s).then((res)=>{
               console.log(res.data);
+              alert(res.data);
             })
         }
     }

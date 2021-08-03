@@ -18,8 +18,7 @@ export default function ListofUser(props) {
     }, [])
 
     function doAction(id , action){
-        if(action === "delete")
-         
+        if(action === "delete")         
        {    console.log(id);
            axios.get('http://localhost:3001/delete-users?id='+id).then(
                 (res)=>{
@@ -38,7 +37,7 @@ export default function ListofUser(props) {
        }
        else if(action==="update")
        {
-             props.history.push("/SignupCustomer/"+id);
+             props.history.push("/Dashboard/SignupCustomer/"+id);
        }
     }
 

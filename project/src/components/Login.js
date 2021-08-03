@@ -5,8 +5,8 @@ import SignupCustomer from './SignupCustomer';
 import axios from 'axios';
 export default function Login(props) {
     
-    const [email, setEmail] = useState(" ");
-    const [password, setPassword] = useState(" ");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     function auth(e){
         e.target.name== "Email" && setEmail(e.target.value);
@@ -30,7 +30,7 @@ export default function Login(props) {
     }
     
         return (
-<>
+        <>
 
 
             <section id="inner-headline">
@@ -43,14 +43,13 @@ export default function Login(props) {
                 </div>
             </section>  
 
-<>
            <div class="container ">
            <div class="row side">
             <div class="col-lg-5 text-center ">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                     <div class="card-body">
-            <form >
+            {/* <form > */}
               <div>
                   <label for="email">Email</label><br/>
                   <input type="text" autoComplete="off"  value={email} onChange={(e)=>{auth(e)}}  name="Email" id="email" class="btn-block btn-md" placeholder="Enter Username or Email "/>
@@ -67,13 +66,8 @@ export default function Login(props) {
               <button class='btn-primary btn-lg '>Sign-up </button>
               </Link>
               <br/>
-              {/* <br/>
-              <div class="text-center"> OR </div>
-              <br/> */}
-              {/* <Link to='/SignupVendor' >
-              <button class='btn-primary btn-lg btn-block'>Sign-up for Vendor</button>
-              </Link> */}
-            </form>
+            
+            {/* </form> */}
 
             </div>
                 
@@ -82,21 +76,7 @@ export default function Login(props) {
         </div>
     </div>
 
-          {/* <div>
-              { 
-            //    to show the data we use this in frontend part design 
-              records.map((curElem)=>{
-                  const {id,email,password} =curElem;
-                 return(
-                     <div key={id}>
-                         <p>{email}</p>
-                         <p>{password}</p>
-                     </div>
-                 )
-              })
-            }
-          </div> */}
-</>
+
 
   
 </>

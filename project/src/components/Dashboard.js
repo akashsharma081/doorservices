@@ -53,8 +53,9 @@ export default function Dashboard() {
              <main>
                 <Switch>
                     {/* here id will get in create student dyanmically  */}
-                    <Route path="/SignupCustomer/:id" component= {SignupCustomer} />
-                    <Route path="/SignupCustomer" component= {SignupCustomer} />
+                    
+                    <Route path="/Dashboard/SignupCustomer/:id" exact component= {SignupCustomer} />
+                  
                     <Route path="/ListofUser" component= {ListofUser} />
                 </Switch>
              </main>

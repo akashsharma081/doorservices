@@ -28,7 +28,7 @@ function App() {
               <Route  path='/Pricing' component={Pricing} />
               <Route  path='/Portfolio' component={Portfolio} />
               <Route  path='/Login' component={Login} />
-              <Route  path='/SignupCustomer' component={SignupCustomer} />
+              <Route  path='/SignupCustomer' exact component={SignupCustomer} />
               <Route  path='/Dashboard' component={Dashboard} /> 
               {/* <Route  path='/SignupVendor' component={SignupVendor} /> */}
               <Route  path='/ListofUser' component={ListofUser} /> 

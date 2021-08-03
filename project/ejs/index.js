@@ -94,7 +94,7 @@ app.get('/list-users',(req,res)=>{
 });
 app.get('/users-by-id',(req,res)=>{
     var studentCollection =connection.db('services').collection('users');   
-    studentCollection.find(_id.ObjectId(req.query.id)).toArray((err,docs)=>{
+    studentCollection.find({_id:ObjectId(req.query.id)}).toArray((err,docs)=>{
         if(!err)
         {
             res.send({status:"ok",data:docs});
