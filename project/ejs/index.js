@@ -149,14 +149,14 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
     var userlogin=connection.db('services').collection('users');  
     console.log(req.body);
     userlogin.findOne({email:req.body.email, password:req.body.password},function(err,result){
-        if(!err){
+        if(!err && result){
             console.log("153");
             console.log(result);
-            res.send(result)
+            res.send({status:"ok", data:result});
         }
         else
         {
-          res.send({err})
+          res.send({status:"ok", data:err})
         }       
     })
 })

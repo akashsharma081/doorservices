@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-router-dom';
 import SignupCustomer from './SignupCustomer';
 import axios from 'axios';
+import { setUser } from '../actions/DoorServiceActions';
 export default function Login(props) {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const dispatch = useDispatch();
     function auth(e){
         e.target.name== "Email" && setEmail(e.target.value);
         e.target.name== "Password" && setPassword(e.target.value);
@@ -21,7 +23,15 @@ export default function Login(props) {
             // setEmail(res.data.data);  // res.data.data is store in redux
             // setPassword(res.data.data);
             alert("dashboard")
-            props.history.push('/Dashboard');
+            if(res.data.status=="ok")
+            {
+
+                dispatch(setUser(res.data.data));
+                props.history.push('/Dashboard');
+            }
+            else{
+                alert("Invalid credentials")
+            }
           
         })
         .catch(

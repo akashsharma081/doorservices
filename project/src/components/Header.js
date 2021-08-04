@@ -1,11 +1,26 @@
 import React from 'react'
 import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-router-dom';
-export default function Header() {
+import { useSelector, useDispatch } from 'react-redux';
+import { LOGOUT_USER } from '../actions/DoorServiceActions';
+import './Header.css';
+
+
+export default function Header(props) {
+
+    const user = useSelector(state => state.user);
+                const dispatch = useDispatch();
+    function logout()
+    {
+        dispatch(LOGOUT_USER());
+        // browserHistory.push("/Login");
+        // props.history.push('/');
+    }
+
     return (
         <>
          <header>
             <div class="navbar navbar-default navbar-static-top">
-                <div class="container">
+                <div class="container-fluid pe-5">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="icon-bar"></span>
@@ -14,7 +29,7 @@ export default function Header() {
                         </button>
                         <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="logo"/></a>
                     </div>
-                    <div class="navbar-collapse collapse ">
+                    <div class="navbar-collapse collapse mypadding">
                         <ul class="nav navbar-nav">
                             <li class="active"><Link to='/'>Home</Link></li> 
                                  <li class="dropdown">
@@ -31,13 +46,16 @@ export default function Header() {
                             <li><Link to='/Portfolio'>Portfolio</Link></li>
                             <li><Link to='/Pricing'>Pricing</Link></li>
                             <li><Link to='/Contact'>Contact</Link></li>
-                            <li class="dropdown"><Link data-toggle="dropdown" class="dropdown-toggle" >Login <b class="caret"></b> </Link>
+
+                            {!user && <li class="dropdown"><Link data-toggle="dropdown" class="dropdown-toggle" >Login <b class="caret"></b> </Link>
                               <ul class="dropdown-menu">
                                 <li><Link to='/Login'>Customer/Vendor</Link></li>
-                                <li><Link to='/Dashboard'>Dashboard</Link></li> 
-                              </ul>
-                            </li>
-
+                            </ul>
+                            </li>}     
+                            {user && <li><Link to='/Login' onClick={logout} >Logout</Link></li>   }
+                            {user && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
+                            {user && <li> <Link >Welcome,  {user.email}</Link>  </li>}
+                           
                         </ul>
                     </div>
                 </div>
