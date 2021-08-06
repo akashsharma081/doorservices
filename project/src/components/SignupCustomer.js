@@ -47,7 +47,7 @@ export default function SignupCustomer(props) {
         // alert(email);
         // alert(password);
         var s={
-           name,phone,address,email,password,role
+           name,phone,address,email,password,role, vendor_services:[]
         }
        
         if(stId)
@@ -68,20 +68,11 @@ export default function SignupCustomer(props) {
     }
 
     return (
-<div>
+<>
 
 
-  <section id="inner-headline">
- 	<div class="container">
- 		<div class="row">
- 			<div class="col-lg-12">
- 				<h2 class="pageTitle">Login and Sign/up</h2>
- 			</div>
- 		</div>
- 	</div>
-  </section>  
 
-  <>
+
             <div class="container ">
             <div class="row side">
              <div class="col-lg-5 text-center">
@@ -118,7 +109,7 @@ export default function SignupCustomer(props) {
                                 <select name="Role" value={role} onChange={(e)=>{setValue(e);}} class="btn-block btn-md " id="inputrole" required>
                                     <option value=" ">Select role</option>
                                     <option value="Customer">Customer</option>
-                                    <option value="Vender">Vender</option>
+                                    <option value="Vendor">Vendor</option>
                                 </select> 
                <br />
                <button type="submit" class='btn-primary btn-md' onClick={sendData}>{stId?"Update Users Details ":"Sign up"}</button>
@@ -137,7 +128,7 @@ export default function SignupCustomer(props) {
 
   </>
  
-</div>
+
     )
 }
 

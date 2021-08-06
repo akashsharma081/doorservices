@@ -161,6 +161,41 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
     })
 })
 
+
+app.post ('/add-business-details', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');     
+    //    req send to createstudent  
+            studentCollection.update({_id:ObjectId(req.body.user._id)},{$set:req.body.business_details},(err,result)=>{
+            if(!err)
+            {
+            res.send({status:"ok",data:"Business Details update succesfully"});
+            }
+            else{
+            res.send({status:"failed",data:err});
+            }
+            })
+});
+
+
+app.post ('/add-vendor-service', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');     
+    //    req send to createstudent  
+            studentCollection.update({_id:ObjectId(req.body.user._id)},{$push:{vendor_services:req.body.service_details}},(err,result)=>{
+            if(!err)
+            {
+            res.send({status:"ok",data:"Service  Details added succesfully"});
+            }
+            else{
+            res.send({status:"failed",data:err});
+            }
+            })
+});
+
+
+
+
+
+
 // app.get("/login-users",(req,res)=>{
 //     res.render("login");
 // })

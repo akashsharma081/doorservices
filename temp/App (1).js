@@ -37,10 +37,10 @@ function App() {
               <Route  path='/Dashboard' component={Dashboard} /> 
               {/* <Route  path='/SignupVendor' component={SignupVendor} /> */}
               <Route  path='/ListofUser' component={ListofUser} /> 
-              <Route path='/Electrician' exact component={Electrician} />
-              <Route path='/Mechanic' exact component={Mechanic} />
-              <Route path='/Plumber' exact component={Plumber} />
-              <Route path='/Haircut' exact component={Haircut} />
+              <Route path='/Electrician ' exact component={Electrician} />
+              <Route path='/Mechanic ' exact component={Mechanic} />
+              <Route path='/Plumber ' exact component={Plumber} />
+              <Route path='/Haircut ' exact component={Haircut} />
             
               
 

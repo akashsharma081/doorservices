@@ -61,32 +61,6 @@ export default function ListofUser(props) {
         
         <div >
 
-<header class="head">
-            <div class="navbar navbar-default navbar-static-top " class="head">
-                <div class="container">
-                    <a class="navbar-brand text-align-center headline" href="index.html">Services Management</a>
-                    <div class="navbar-collapse collapse ">
-                        <ul class="nav navbar-nav nav-right">
-                        
-                                <form class="input-group search1">
-                                    <input class="form-control" type="text" placeholder="Search for..." />
-                                    <button class="btn btn-primary" type="button"></button>
-                                </form>
-                            
-                                {/* <div class="dropdown ">
-                                    <button class="btn btn-primary dropdown-toggle"  data-toggle="dropdown"  ><span class="caret"></span></button>       
-                                    <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                        <li class="dropdown-item" >Settings</li>
-                                        <li class="dropdown-item" >Activity Log</li>
-                                        <li class="dropdown-item" >Logout</li>
-                                    </ul>
-                                </div> */}
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </header> 
      
               
                         <h1 class="py-4 ">List of Users</h1>
