@@ -16,16 +16,17 @@ export default function Login(props) {
     }
 
     function logincheck(){
-        alert(email);
-        alert(password);
+        // alert(email);
+        // alert(password);
         axios.post('http://localhost:3001/login-users',{email,password}).then((res)=>{
             // console.log(res.data);
             // setEmail(res.data.data);  // res.data.data is store in redux
             // setPassword(res.data.data);
-            alert("dashboard")
+           
             if(res.data.status=="ok")
-            {
-
+            {   
+                alert("dashboard")
+                alert(res.data.data);
                 dispatch(setUser(res.data.data));
                 props.history.push('/Dashboard');
             }

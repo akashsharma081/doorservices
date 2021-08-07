@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link , Switch , Route} from 'react-router-dom';
 
 export default function Services() {
     return (
@@ -15,89 +16,50 @@ export default function Services() {
 
 <section id="content">
 		<div class="container content">	
-    <div class="row">
-			<div class="col-md-12">
-				<div><h2>Our Quality Service</h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident, doloribus omnis minus ovident, doloribus omnis minus temporibus perferendis nesciunt..</div>
-				<br/>
-			</div>
-		</div>		
+            <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div><h2>Select Services</h2></div>
+                        <br/>
+                    </div>
+            </div>		
 
-        <div class="row service-v1 margin-bottom-40">
-            <div class="col-md-4 md-margin-bottom-40">
-               <img class="img-responsive" src="img/service1.jpg" alt="" />   
-                <h3>Managment</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident, doloribus omnis minus temporibus perferendis nesciunt quam repellendus nulla nemo ipsum odit corrupti consequuntur possimus</p>        
+            <div class="row service-v1 margin-bottom-40">
+                <Link exact to='/Electrician'>
+                    <div class="col-md-4 md-margin-bottom-40">
+                        {/* <img class="img-responsive" src="img/eletric.jpg" alt="" />    */}
+                        <h3 class="text-center">Electrician </h3>
+                        <p>Hire the Expert services of experienced electrician online with a rating 4,5+ in accorss India, within 90 minutes of your booking with a 30-days post-services guarantee and protection against damage upto INR 5000, Book the best class eletician services at your favourable time slot without giving any eletical shock to your wallet, service door company    </p>        
+                    </div>
+                </Link>
+                {/* <Link exact to='/Plumber'>
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="img/Plumber.jpg" alt="" />            
+                        <h3 class="text-center">Plumber</h3>
+                        <p>Hire the Expert services of experienced Plumber online with a rating 4,5+ in accorss India, within 90 minutes of your booking with a 30-days post-services guarantee and protection against damage upto INR 5000, Book the best class plumber services at your favourable time slot without giving any plumber shock to your wallet, service door company    </p>        
+                    </div>
+                </Link>
+                <Link to='/Haircut'>
+                    <div class="col-md-4 md-margin-bottom-40">
+                    <img class="img-responsive" src="img/haircut.jpg" alt="" />  
+                        <h3 class="text-center">Haircut</h3>
+                        <p>Hire the Expert services of experienced Haircut online with a rating 4,5+ in accorss India, within 90 minutes of your booking with a 30-days post-services guarantee and protection against damage upto INR 5000, Book the best class haircut services at your favourable time slot without giving any haircut shock to your wallet, service door company    </p>        
+                    </div>
+                </Link> */}
             </div>
-            <div class="col-md-4">
-                <img class="img-responsive" src="img/service2.jpg" alt="" />            
-                <h3>Construction</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident, doloribus omnis minus temporibus perferendis nesciunt quam repellendus nulla nemo ipsum odit corrupti consequuntur possimus</p>        
-            </div>
-            <div class="col-md-4 md-margin-bottom-40">
-              <img class="img-responsive" src="img/service3.jpg" alt="" />  
-                <h3>Finance</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident, doloribus omnis minus temporibus perferendis nesciunt quam repellendus nulla nemo ipsum odit corrupti consequuntur possimus</p>        
-            </div>
-        </div>
   
 
-        <hr class="margin-bottom-50" />
+            {/* <hr class="margin-bottom-50" />
 
-
-        <div class="row">
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-user"></i>
-                <div class="info-blocks-in">
-                    <h3>Awesome Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt</p>
-                </div>
-            </div>
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-star"></i>
-                <div class="info-blocks-in">
-                    <h3>FontAwesome</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt</p>
-                </div>
-            </div>
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-book"></i>
-                <div class="info-blocks-in">
-                    <h3>Bootstrap</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt</p>
-                </div>
-            </div>
-        </div>
-
-
-       
-
-        <div class="row">
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-home"></i>
-                <div class="info-blocks-in">
-                    <h3>SEO Ready</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt</p>
-                </div>
-            </div>
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-flag-o"></i>
-                <div class="info-blocks-in">
-                    <h3>Fully Responsive</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt</p>
-                </div>
-            </div>
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-thumbs-o-up"></i>
-                <div class="info-blocks-in">
-                    <h3>CSS3 + HTML5</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt</p>
-                </div>
-            </div>
-        </div>
-
-
+            <Link to='/Mechanic'>
+                <div class="col-md-4 md-margin-bottom-40">
+                        <img class="img-responsive" src="img/Mechanic.jpg" alt="" />  
+                        <h3 class="text-center">Mechanic</h3>
+                        <p>Hire the Expert services of experienced Mechanic online with a rating 4,5+ in accorss India, within 90 minutes of your booking with a 30-days post-services guarantee and protection against damage upto INR 5000, Book the best class mechanic services at your favourable time slot without giving any mechanic shock to your wallet, service door company    </p>        
+                </div> 
+            </Link> */}
         
-    </div>
+
+        </div>
 </section>
         </>
     )

@@ -32,19 +32,19 @@ export default function Header(props) {
                     <div class="navbar-collapse collapse mypadding">
                         <ul class="nav navbar-nav">
                             <li class="active"><Link to='/'>Home</Link></li> 
-                                 <li class="dropdown">
-                            <Link to='/About' data-toggle="dropdown" class="dropdown-toggle">About Us <b class="caret"></b></Link>
+                                 
+                            {!user && <li class="dropdown"><Link to='/About' data-toggle="dropdown" class="dropdown-toggle">About Us <b class="caret"></b></Link>
                             <ul class="dropdown-menu">
                                 <li><a href="about.html">Company</a></li>
                                 <li><a href="#">Our Team</a></li>
                                 <li><a href="#">News</a></li> 
                                 <li><a href="#">Investors</a></li>
                             </ul>
-                        </li>
+                        </li>}
                           
                             <li><Link to='/Services'>Services</Link></li>
-                            <li><Link to='/Portfolio'>Portfolio</Link></li>
-                            <li><Link to='/Pricing'>Pricing</Link></li>
+                            {!user && <li><Link to='/Portfolio'>Portfolio</Link></li>}
+                            {!user && <li><Link to='/Pricing'>Pricing</Link></li>}
                             <li><Link to='/Contact'>Contact</Link></li>
 
                             {!user && <li class="dropdown"><Link data-toggle="dropdown" class="dropdown-toggle" >Login <b class="caret"></b> </Link>
@@ -54,7 +54,7 @@ export default function Header(props) {
                             </li>}     
                             {user && <li><Link to='/Login' onClick={logout} >Logout</Link></li>   }
                             {user && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
-                            {user && <li> <Link >Welcome,  {user.email}</Link>  </li>}
+                            {user && <li> <Link >Home,  {user.email}</Link>  </li>}
                            
                         </ul>
                     </div>

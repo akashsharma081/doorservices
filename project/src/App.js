@@ -14,11 +14,16 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
 import ListofUser from './components/ListofUser';
+import Electrician from './components/Electrician';
+import Mechanic from './components/Mechanic';
+import Plumber from './components/Plumber';
+import Haircut from './components/Haircut';
 
 function App() {
   return (
       <Router>
-          <Header></Header>
+          <div className="App">
+          <Header/>
           <Switch> 
               
               <Route  path='/' exact component={Home} />
@@ -28,15 +33,21 @@ function App() {
               <Route  path='/Pricing' component={Pricing} />
               <Route  path='/Portfolio' component={Portfolio} />
               <Route  path='/Login' component={Login} />
-              <Route  path='/SignupCustomer' exact component={SignupCustomer} />
+              <Route  path='/SignupCustomer' component={SignupCustomer} />
               <Route  path='/Dashboard' component={Dashboard} /> 
               {/* <Route  path='/SignupVendor' component={SignupVendor} /> */}
               <Route  path='/ListofUser' component={ListofUser} /> 
+              <Route path='/Electrician ' exact component={Electrician} />
+              <Route path='/Mechanic ' exact component={Mechanic} />
+              <Route path='/Plumber ' exact component={Plumber} />
+              <Route path='/Haircut ' exact component={Haircut} />
+            
+              
 
 
           </Switch> 
-          <Footer></Footer>
-          
+          <Footer/>
+          </div>
       </Router>
   );
 }
