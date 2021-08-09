@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react';
 import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-router-dom';
 import Login from './Login';
 import axios from 'axios';
@@ -47,7 +47,7 @@ export default function SignupCustomer(props) {
         // alert(email);
         // alert(password);
         var s={
-           name,phone,address,email,password,role
+           name,phone,address,email,password,role, vendor_services:[]
         }
        
         if(stId)
@@ -68,28 +68,15 @@ export default function SignupCustomer(props) {
     }
 
     return (
-<div>
+<>
 
-
-  <section id="inner-headline">
- 	<div class="container">
- 		<div class="row">
- 			<div class="col-lg-12">
- 				<h2 class="pageTitle">Login and Sign/up</h2>
- 			</div>
- 		</div>
- 	</div>
-  </section>  
-
-  <>
             <div class="container ">
-            <div class="row side">
-             <div class="col-lg-5 text-center">
+            <div class="row ">
+             <div class="col-lg-5 text-center side">
                  <div class="card shadow-lg border-0 rounded-lg mt-5">
                      <div class="card-header"><h3 class="text-center font-weight-light ">{stId?"Update Users Regisration ":"Sign-up Or Regisration "}</h3></div>
                      <div class="card-body">
-             <form action="">
-                 users id is {stId};
+        <form action="">
                <div>
                    <label for="inputname">Full Name</label><br/>                                               {/*name is use in function handleinput  */}
                    <input type="text"  value={name} onChange={(e)=>{setValue(e)}} name="Name" id="inputname" class="btn-block btn-md" placeholder="Enter your name"/>
@@ -118,14 +105,12 @@ export default function SignupCustomer(props) {
                                 <select name="Role" value={role} onChange={(e)=>{setValue(e);}} class="btn-block btn-md " id="inputrole" required>
                                     <option value=" ">Select role</option>
                                     <option value="Customer">Customer</option>
-                                    <option value="Vender">Vender</option>
+                                    <option value="Vendor">Vendor</option>
                                 </select> 
                <br />
                <button type="submit" class='btn-primary btn-md' onClick={sendData}>{stId?"Update Users Details ":"Sign up"}</button>
-               <hr class="bg-dark"/>
-               <Link to='/Login' >
-               <button class='btn-primary btn-lg btn-block'>Login</button>
-               </Link>
+            
+
         </form>
 
              </div>
@@ -137,7 +122,7 @@ export default function SignupCustomer(props) {
 
   </>
  
-</div>
+
     )
 }
 

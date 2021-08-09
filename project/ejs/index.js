@@ -27,58 +27,6 @@ client.connect((err,db)=>{
       }
 })
 
-app.get('/list-product',(req,res)=>{
-    var studentCollection =connection.db('services').collection('AddDetails');   
-    studentCollection.find().toArray((err,docs)=>{
-        if(!err)
-        {
-            res.send({status:"ok",data:docs});
-        }
-        else{
-            res.send({status:"failed",data:err});
-        }
-    })
-});
-
-app.get('/delete-product',(req,res)=>{
-    var studentCollection =connection.db('services').collection('AddDetails');   
-    studentCollection.remove({_id:ObjectId(req.query.id)},(err,result)=>{
-        if(!err)
-        {
-            res.send({status:"ok",data:"product deleted succesfully"});
-        }
-        else{
-            res.send({status:"failed",data:err});
-        }
-    })
-});
-
-app.post('/create-product',bodyParser.json(),(req,res)=>{
-    var studentCollection =connection.db('services').collection('AddDetials');   
-    studentCollection.insert(req.body,(err,result)=>{
-        if(!err)
-        {
-            res.send({status:"ok",data:"Product Created succesfully"});
-        }
-        else{
-            res.send({status:"failed",data:err});
-        }
-    })
-});
-
-// app.post('/update-product',bodyParser.json(),(req,res)=>{
-//     var studentCollection =connection.db('serivces').collection('AddDetails');     
-//                                                                     //    req send to createstudent  
-//     studentCollection.update({_id:ObjectId(req.body._id)},{$set:{name:req.body.name ,age:req.body.age ,marks:req.body.marks, email:req.body.email , city:req.body.city  }},(err,result)=>{
-//         if(!err)
-//         {
-//             res.send({status:"ok",data:"Product update succesfully"});
-//         }
-//         else{
-//             res.send({status:"failed",data:err});
-//         }
-//     })
-// });
 
 app.get('/list-users',(req,res)=>{
     var studentCollection =connection.db('services').collection('users');   
@@ -161,21 +109,105 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
     })
 })
 
-// app.get("/login-users",(req,res)=>{
-//     res.render("login");
-// })
 
-// app.post("/login", async (req,res)=>{
-//     var studentCollection =connection.db('services').collection('users');   
-//     try {
-//         const email = res.body.Email;
-//         const password = res.body.Password;
+app.post ('/add-business-details', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');     
+    //    req send to createstudent  
+            studentCollection.update({_id:ObjectId(req.body.user._id)},{$set:req.body.business_details},(err,result)=>{
+            if(!err)
+            {
+            res.send({status:"ok",data:"Business Details update succesfully"});
+            }
+            else{
+            res.send({status:"failed",data:err});
+            }
+            })
+});
 
-//         console.log(`${email} and password is ${password}`);
-//     } catch (error) {
-//         res.status(400).send("invalid Email and password")
-//     }
-// })
+
+app.post ('/add-vendor-service', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');     
+    //    req send to createstudent  
+            studentCollection.update({_id:ObjectId(req.body.user._id)},{$push:{vendor_services:req.body.service_details}},(err,result)=>{
+            if(!err)
+            {
+            res.send({status:"ok",data:"Service  Details added succesfully"});
+            }
+            else{
+            res.send({status:"failed",data:err});
+            }
+            })
+});
+
+
+
+app.get('/list-contact',(req,res)=>{
+    var studentCollection =connection.db('services').collection('AddDetails');   
+    studentCollection.find().toArray((err,docs)=>{
+        if(!err)
+        {
+            res.send({status:"ok",data:docs});
+        }
+        else{
+            res.send({status:"failed",data:err});
+        }
+    })
+});
+
+
+
+app.get('/contact-by-id',(req,res)=>{
+    var studentCollection =connection.db('services').collection('AddDetails');   
+    studentCollection.find({_id:ObjectId(req.query.id)}).toArray((err,docs)=>{
+        if(!err)
+        {
+            res.send({status:"ok",data:docs});
+        }
+        else{
+            res.send({status:"failed",data:err});
+        }
+    })
+});
+
+app.post('/contact-users',bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('AddDetails');   
+    studentCollection.insert(req.body,(err,result)=>{
+        if(!err)
+        {
+            res.send({status:"ok",data:"contact Details send succesfully"});
+        }
+        else{
+            res.send({status:"failed",data:err});
+        }
+    })
+});
+
+app.get('/delete-contact',(req,res)=>{
+    var studentCollection =connection.db('services').collection('AddDetails');   
+    studentCollection.remove({_id:ObjectId(req.query.id)},(err,result)=>{
+        if(!err)
+        {
+            res.send({status:"ok",data:"contact deleted succesfully"});
+        }
+        else{
+            res.send({status:"failed",data:err});
+        }
+    })
+});
+
+app.post('/update-contact',bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('AddDetails');     
+                                                                   
+    studentCollection.update({_id:ObjectId(req.body._id)},{$set:{name:req.body.name ,email:req.body.email ,message:req.body.message }},(err,result)=>{
+        if(!err)
+        {
+            res.send({status:"ok",data:"Contact Query update succesfully"});
+        }
+        else{
+            res.send({status:"failed",data:err});
+        }
+    })
+});
 
 
 app.listen(3001, ()=>{

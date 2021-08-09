@@ -1843,7 +1843,7 @@ padding-top: 3px;
 
 .side{
 	display: flex;
-	justify-content: center;
+	justify-content:space-evenly;
 	align-content: center;
 }
 
@@ -1916,4 +1916,18 @@ padding-top: 3px;
 .listofusercolor{
 	color: yellowgreen;
 	font-weight: 500;
+}
+
+.roundimg{
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	border:0.1px solid black;
+	margin-top: 50px;
+}
+
+.details{
+	margin-top: 30px;
+	/* background-color: cadetblue; */
+	width: 550px;
 }

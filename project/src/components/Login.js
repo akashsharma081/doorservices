@@ -9,6 +9,8 @@ export default function Login(props) {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     function auth(e){
         e.target.name== "Email" && setEmail(e.target.value);
@@ -25,10 +27,22 @@ export default function Login(props) {
            
             if(res.data.status=="ok")
             {   
-                alert("dashboard")
-                alert(res.data.data);
+                // alert("dashboard")
+                // alert(res.data.data);
                 dispatch(setUser(res.data.data));
-                props.history.push('/Dashboard');
+                // props.history.push('/Dashboard');
+                if(user.role=="Vendor")
+                {
+                    props.history.push('/Dashboard');
+                }
+                else if(user.role=="Admin")
+                {
+                    props.history.push('/Dashboard');
+                }
+                else if(user.role=="Customer")
+                {
+                    props.history.push('/Services');
+                }
             }
             else{
                 alert("Invalid credentials")
@@ -42,8 +56,6 @@ export default function Login(props) {
     
         return (
         <>
-
-
             <section id="inner-headline">
                 <div class="container">
                     <div class="row">

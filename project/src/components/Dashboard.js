@@ -3,63 +3,66 @@ import react from 'react';
 import {NavLink, Route , Switch,Link} from 'react-router-dom';
 import SignupCustomer from './SignupCustomer';
 import ListofUser from './ListofUser';
-
+import { useSelector, useDispatch } from 'react-redux';
+import  BusinessDetails  from './BusinessDetails';
+import './Dashboard.css';
+import ContactUs from './ContactUs';
 import React from 'react'
+import VendorService from './VendorService';
 
 export default function Dashboard() {
-   
- 
+    const user = useSelector(state => state.user);
         return (
             // <h1>Hello world </h1>
     <>
-        <header class="head">
-            <div class="navbar navbar-default navbar-static-top " class="head">
-                <div class="container">
-                    <a class="navbar-brand text-align-center headline" href="index.html">Services Management</a>
-                    <div class="navbar-collapse collapse ">
-                        <ul class="nav navbar-nav nav-right">
-                        
-                                <form class="input-group search1">
-                                    <input class="form-control" type="text" placeholder="Search for..." />
-                                    <button class="btn btn-primary" type="button"></button>
-                                </form>
-                            
-                                {/* <div class="dropdown ">
-                                    <button class="btn btn-primary dropdown-toggle"  data-toggle="dropdown"  ><span class="caret"></span></button>       
-                                    <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                        <li class="dropdown-item" >Settings</li>
-                                        <li class="dropdown-item" >Activity Log</li>
-                                        <li class="dropdown-item" >Logout</li>
-                                    </ul>
-                                </div> */}
+         
 
-                        </ul>
+            <div className="container contentArea">
+                <div className="row ">
+                    <div className="col-md-3">
+                        <div className="list-group mgtop100">
+
+                           
+                           
+                        {user && user.role=="Admin" && <div className="list-group-item">
+                            <NavLink className="nav-link dip subheading1" to="/Dashboard/ListofUser">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                                List of User
+                            </NavLink>
+                            </div>}
+                        {user && user.role=="Admin" && <div className="list-group-item">
+                             <NavLink className="nav-link dip subheading1" to="/Dashboard/ContactUs">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                              User Message 
+                            </NavLink>
+                            </div>
+                            }
+                            
+                            {user && user.role=="Vendor" && <div className="list-group-item"> <NavLink className="nav-link dip subheading1" to="/Dashboard/BusinessDetails">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                                Set Business Details
+                            </NavLink></div>}
+                            {user && user.role=="Vendor" && <div className="list-group-item"> <NavLink className="nav-link dip subheading1" to="/Dashboard/VendorService">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                                Set service Details
+                            </NavLink></div>}
+                            
+                        </div>
+                    </div>
+                    <div className="col-md-9">
+                            <Switch>
+                            {/* here id will get in create student dyanmically  */}
+                            
+                            <Route path="/Dashboard/SignupCustomer/:id" exact component= {SignupCustomer} />
+                            <Route path="/Dashboard/BusinessDetails" exact component= {BusinessDetails} />
+                            <Route path="/Dashboard/ListofUser" component= {ListofUser} />
+                            <Route path="/Dashboard/ContactUs" component= {ContactUs} />
+                            <Route path="/Dashboard/VendorService" component= {VendorService} />
+                        </Switch>
                     </div>
                 </div>
             </div>
-        </header>  
 
-        <section class="sidebar">
-           <div class="sb-sidenav-menu-heading heading">Actions</div>
-           <NavLink className="nav-link dip subheading" to="/SignupCustomer">
-                   <div className="sb-nav-link-icon iconspace"><i class="fas fa-chart-area move1"></i></div>  
-                   Create User
-               </NavLink>
-               <NavLink className="nav-link dip subheading1" to="/ListofUser">
-                   <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
-                   List of User
-               </NavLink>
-
-             <main>
-                <Switch>
-                    {/* here id will get in create student dyanmically  */}
-                    
-                    <Route path="/Dashboard/SignupCustomer/:id" exact component= {SignupCustomer} />
-                  
-                    <Route path="/ListofUser" component= {ListofUser} />
-                </Switch>
-             </main>
-        </section>
 
     </>  
           

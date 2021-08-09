@@ -31,7 +31,7 @@ export default function Header(props) {
                     </div>
                     <div class="navbar-collapse collapse mypadding">
                         <ul class="nav navbar-nav">
-                            <li class="active"><Link to='/'>Home</Link></li> 
+                            {!user && <li class="active"><Link to='/'>Home</Link></li> }
                                  
                             {!user && <li class="dropdown"><Link to='/About' data-toggle="dropdown" class="dropdown-toggle">About Us <b class="caret"></b></Link>
                             <ul class="dropdown-menu">
@@ -46,15 +46,14 @@ export default function Header(props) {
                             {!user && <li><Link to='/Portfolio'>Portfolio</Link></li>}
                             {!user && <li><Link to='/Pricing'>Pricing</Link></li>}
                             <li><Link to='/Contact'>Contact</Link></li>
+                            {user && user.role=="Customer" && <li><Link to='/Contact'>Contact</Link></li>}
+                            {user && user.role=="Vendor" && <li><Link to='/Contact'>Contact</Link></li>}
 
-                            {!user && <li class="dropdown"><Link data-toggle="dropdown" class="dropdown-toggle" >Login <b class="caret"></b> </Link>
-                              <ul class="dropdown-menu">
-                                <li><Link to='/Login'>Customer/Vendor</Link></li>
-                            </ul>
-                            </li>}     
+                            {!user && <li ><Link to='/Login'>Login</Link></li>}     
+                            {user &&  user.role=="Admin" && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
+                            {user && user.role=="Vendor" && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
                             {user && <li><Link to='/Login' onClick={logout} >Logout</Link></li>   }
-                            {user && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
-                            {user && <li> <Link >Home,  {user.email}</Link>  </li>}
+                            {user && <li> <Link > {user.name}</Link>  </li>}
                            
                         </ul>
                     </div>
