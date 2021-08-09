@@ -30,19 +30,19 @@ export default function Login(props) {
                 // alert("dashboard")
                 // alert(res.data.data);
                 dispatch(setUser(res.data.data));
-                // props.history.push('/Dashboard');
-                if(user.role=="Vendor")
-                {
-                    props.history.push('/Dashboard');
-                }
-                else if(user.role=="Admin")
-                {
-                    props.history.push('/Dashboard');
-                }
-                else if(user.role=="Customer")
-                {
-                    props.history.push('/Services');
-                }
+                props.history.push('/Dashboard');
+                // if( user && user.role=="Vendor")
+                // {
+                //     props.history.push('/Dashboard');
+                // }
+                // else if( user && user.role=="Admin")
+                // {
+                //     props.history.push('/Dashboard');
+                // }
+                // else if(user && user.role=="Customer")
+                // {
+                //     props.history.push('/Services');
+                // }
             }
             else{
                 alert("Invalid credentials")

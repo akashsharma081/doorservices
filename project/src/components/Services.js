@@ -24,21 +24,21 @@ export default function Services() {
             </div>		
 
             <div class="row service-v1 margin-bottom-40">
-                <Link exact to='/Electrician'>
+                <Link exact to='/ServicesListing/Electrician'>
                     <div class="col-md-4 md-margin-bottom-40">
                         <img class="img-responsive" src="img/eletric.jpg" alt="" />   
                         <h3 class="text-center">Electrician </h3>
                         <p>Hire the Expert services of experienced electrician online with a rating 4,5+ in accorss India, within 90 minutes of your booking with a 30-days post-services guarantee and protection against damage upto INR 5000, Book the best class eletician services at your favourable time slot without giving any eletical shock to your wallet, service door company    </p>        
                     </div>
                 </Link>
-                <Link exact to='/Plumber'>
+                <Link exact to='/ServicesListing/Plumber'>
                     <div class="col-md-4">
                         <img class="img-responsive" src="img/Plumber.jpg" alt="" />            
                         <h3 class="text-center">Plumber</h3>
                         <p>Hire the Expert services of experienced Plumber online with a rating 4,5+ in accorss India, within 90 minutes of your booking with a 30-days post-services guarantee and protection against damage upto INR 5000, Book the best class plumber services at your favourable time slot without giving any plumber shock to your wallet, service door company    </p>        
                     </div>
                 </Link>
-                <Link to='/Haircut'>
+                <Link to='/ServicesListing/Haircut'>
                     <div class="col-md-4 md-margin-bottom-40">
                     <img class="img-responsive" src="img/haircut.jpg" alt="" />  
                         <h3 class="text-center">Haircut</h3>
@@ -50,7 +50,7 @@ export default function Services() {
 
             <hr class="margin-bottom-50" />
 
-            <Link to='/Mechanic'>
+            <Link to='/ServicesListing/Mechanic'>
                 <div class="col-md-4 md-margin-bottom-40">
                         <img class="img-responsive" src="img/Mechanic.jpg" alt="" />  
                         <h3 class="text-center">Mechanic</h3>

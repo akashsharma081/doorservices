@@ -19,6 +19,7 @@ import Mechanic from './components/Mechanic';
 import Plumber from './components/Plumber';
 import Haircut from './components/Haircut';
 import ContactUs from './/components/ContactUs';
+import ServicesListing from './components/ServicesListing';
 
 
 function App() {
@@ -39,10 +40,12 @@ function App() {
               <Route  path='/Dashboard' component={Dashboard} /> 
               {/* <Route  path='/SignupVendor' component={SignupVendor} /> */}
               <Route  path='/ListofUser' component={ListofUser} /> 
-              <Route path='/Electrician' exact component={Electrician} />
+              <Route  path='/ServicesListing/:cat_name' component={ServicesListing} /> 
+
+              {/* <Route path='/Electrician' exact component={Electrician} />
               <Route path='/Mechanic' exact component={Mechanic} />
               <Route path='/Plumber' exact component={Plumber} />
-              <Route path='/Haircut' exact component={Haircut} />
+              <Route path='/Haircut' exact component={Haircut} /> */}
               <Route path='/ContactUs' exact component={ContactUs} />
             
               

@@ -10,8 +10,12 @@ import ContactUs from './ContactUs';
 import React from 'react'
 import VendorService from './VendorService';
 
-export default function Dashboard() {
+export default function Dashboard(props) {
     const user = useSelector(state => state.user);
+    // if(user && user.role=="Customer")
+    // {
+    //     props.history.push("/Services");
+    // }
         return (
             // <h1>Hello world </h1>
     <>

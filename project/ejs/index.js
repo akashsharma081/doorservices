@@ -139,6 +139,31 @@ app.post ('/add-vendor-service', bodyParser.json(),(req,res)=>{
             })
 });
 
+app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');
+    studentCollection.find().toArray((err,docs)=>{
+        if(!err)
+        {
+            var allServices = [];
+            docs.forEach((u)=>{
+              u.vendor_services &&  u.vendor_services.forEach((sr)=>{
+                    allServices.push(sr);
+                })
+            });
+
+            var catServices = allServices.filter(srvs=>{
+                return srvs.service_category==req.body.service_category;
+            })
+            console.log("---------157-------------")
+            console.log(catServices);
+            res.send({status:"ok", data:catServices});
+        }
+        else{
+            res.send({status:"failed", data:err});
+        }
+    })
+})
+
 
 
 app.get('/list-contact',(req,res)=>{
@@ -182,6 +207,9 @@ app.post('/contact-users',bodyParser.json(),(req,res)=>{
     })
 });
 
+
+
+
 app.get('/delete-contact',(req,res)=>{
     var studentCollection =connection.db('services').collection('AddDetails');   
     studentCollection.remove({_id:ObjectId(req.query.id)},(err,result)=>{
@@ -194,6 +222,8 @@ app.get('/delete-contact',(req,res)=>{
         }
     })
 });
+
+
 
 app.post('/update-contact',bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('AddDetails');     
