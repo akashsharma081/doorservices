@@ -2,40 +2,45 @@ import React, { useState,useEffect } from "react";
 import { baseUrl } from "../config.js";
 import axios from "axios";
 
-var serviceCards=[];
+
 
 
 function ServicesListing(props) {
   var category = props.match.params.cat_name;
   const [services, setservices] = useState([]);
+  const [serviceCards, setserviceCards] = useState([]);
   
-
   useEffect(() => {
     axios
       .post(baseUrl + "get-services-by-category", {
         service_category: category,
       })
       .then((res) => {
-         
-        setservices(res.data.data);
+          // alert(JSON.stringify(res.data.data))
+          setservices(res.data.data);
       });
   }, []);
 
+
+
   useEffect(() => {
+
+    // alert("in 24" + JSON.stringify(services));
     
       if(services.length>0)
       {
             
-            serviceCards=services.map((s) => {
+        setserviceCards(services.map((s) => {
                                                    return (
                                                    <div key={Math.random} className="col-md-3">
                                                       {" "}
                                                       <h3>{s.service_title}</h3>
                                                       <p>{s.service_cost}</p>
                                                       <p>{s.service_description}</p>
+                                                      {/* <button onClick={()=>{sendServiceRequest()}}>send Request</button> */}
                                                    </div>
                                                    );
-                                                });
+                                                }));
 
          }
   }, [services]);

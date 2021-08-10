@@ -145,12 +145,15 @@ app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
         if(!err)
         {
             var allServices = [];
+            
             docs.forEach((u)=>{
               u.vendor_services &&  u.vendor_services.forEach((sr)=>{
                     allServices.push(sr);
                 })
             });
-
+            console.log("---------153-------------")
+            console.log(allServices);
+            console.log("checking for "+req.body.service_category );
             var catServices = allServices.filter(srvs=>{
                 return srvs.service_category==req.body.service_category;
             })
