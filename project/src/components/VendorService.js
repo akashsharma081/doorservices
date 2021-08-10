@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 function VendorService(props) {
     const user = useSelector((state) => state.user);
+    const username= user.name;
 
     const [service_title, setservice_title] = useState("");
     const [service_cost, setservice_cost] = useState("");
@@ -108,10 +109,7 @@ function VendorService(props) {
                       <br /> {/*name is use in function handleinput  */}
                       <input
                         type="text"
-                        value={service_title}
-                        onChange={(e) => {
-                          setValue(e);
-                        }}
+                        value={username}
                         name="service_title"
                         id="inputname"
                         class="btn-block btn-md"

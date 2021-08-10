@@ -2,9 +2,6 @@ import React, { useState,useEffect } from "react";
 import { baseUrl } from "../config.js";
 import axios from "axios";
 
-
-
-
 function ServicesListing(props) {
   var category = props.match.params.cat_name;
   const [services, setservices] = useState([]);
@@ -21,6 +18,10 @@ function ServicesListing(props) {
       });
   }, []);
 
+  function sendServiceRequest(){
+    
+  }
+
 
 
   useEffect(() => {
@@ -32,13 +33,15 @@ function ServicesListing(props) {
             
         setserviceCards(services.map((s) => {
                                                    return (
-                                                   <div key={Math.random} className="col-md-3">
+                                                   <div key={Math.random} className="col-md-12">
                                                       {" "}
                                                       <h3>{s.service_title}</h3>
                                                       <p>{s.service_cost}</p>
                                                       <p>{s.service_description}</p>
-                                                      {/* <button onClick={()=>{sendServiceRequest()}}>send Request</button> */}
+                                                      <button onClick={()=>{sendServiceRequest()}}>send Request</button>
+                                                      <hr/>
                                                    </div>
+                                                   
                                                    );
                                                 }));
 

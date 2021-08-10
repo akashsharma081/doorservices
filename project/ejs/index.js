@@ -110,6 +110,8 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
 })
 
 
+
+
 app.post ('/add-business-details', bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');     
     //    req send to createstudent  
@@ -167,6 +169,19 @@ app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
     })
 })
 
+
+// app.get('/view-business-details', bodyParser.json(),(req,res)=>{
+//     var studentCollection =connection.db('services').collection('users');   
+//     studentCollection.findOne({_id:ObjectId(req.query.id)},function(err,docs){
+//         if(!err && result)
+//         {
+//             res.send({status:"ok",data:docs});
+//         }
+//         else{
+//             res.send({status:"failed",data:err});
+//         }
+//     })
+// });
 
 
 app.get('/list-contact',(req,res)=>{

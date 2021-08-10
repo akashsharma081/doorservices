@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 function BusinessDetails(props) {
+
   const user = useSelector((state) => state.user);
 
   const [business_name, setbusiness_name] = useState("");
@@ -18,12 +19,10 @@ function BusinessDetails(props) {
       // remember always the stId exist if you dont apply than this calling no sense
       axios.get("http://localhost:3001/users-by-id?id=" + stId).then((res) => {
         // console.log(res.data.data);
-        // setname(res.data.data[0].name);
-        // setphone(res.data.data[0].phone);
-        // setaddress(res.data.data[0].address);
-        // setemail(res.data.data[0].email);
-        // setpassword(res.data.data[0].password);
-        // setrole(res.data.data[0].role);
+        setbusiness_name(res.data.data[0].business_name);
+        setbusiness_phone(res.data.data[0].business_name);
+        setbusiness_address(res.data.data[0].business_address);
+   
       });
     }
   }, []);
@@ -67,7 +66,7 @@ function BusinessDetails(props) {
           <div class="col-lg-6 text-center">
             <div class="card shadow-lg border-0 rounded-lg mt-1">
               <div class="card-header">
-                <h3 class="text-center font-weight-light ">Enter Business Details</h3>
+                <h3 class="text-center font-weight-light ">{stId?"Update Business Details":"Enter Business Details "}</h3>
               </div>
               <div class="card-body">
                 {/* <form action=""> */}

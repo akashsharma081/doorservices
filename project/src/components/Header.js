@@ -46,8 +46,8 @@ export default function Header(props) {
                             {!user && <li><Link to='/Portfolio'>Portfolio</Link></li>}
                             {!user && <li><Link to='/Pricing'>Pricing</Link></li>}
                             <li><Link to='/Contact'>Contact</Link></li>
-                            {user && user.role=="Customer" && <li><Link to='/Contact'>Contact</Link></li>}
-                            {user && user.role=="Vendor" && <li><Link to='/Contact'>Contact</Link></li>}
+                            {user && user.role=="Customer" && user.role=="Vendor" &&<li><Link to='/Contact'>Contact</Link></li>}
+                            {/* {user  && <li><Link to='/Contact'>Contact</Link></li>} */}
 
                             {!user && <li ><Link to='/Login'>Login</Link></li>}     
                             {user && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
