@@ -150,7 +150,7 @@ app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
             
             docs.forEach((u)=>{
               u.vendor_services &&  u.vendor_services.forEach((sr)=>{
-                    allServices.push(sr);
+                    allServices.push({...sr,vendor_id:u._id } );
                 })
             });
             console.log("---------153-------------")
@@ -159,6 +159,8 @@ app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
             var catServices = allServices.filter(srvs=>{
                 return srvs.service_category==req.body.service_category;
             })
+
+            var service
             console.log("---------157-------------")
             console.log(catServices);
             res.send({status:"ok", data:catServices});
@@ -169,6 +171,37 @@ app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
     })
 })
 
+app.post('/get-service-requests', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');
+    studentCollection.find({_id:ObjectId(req.body.vendor_id)}).toArray((err,docs)=>{
+        if(!err && docs.length>0)
+        {
+                       res.send({status:"ok", data:docs[0].customer_requests});
+        }
+        else{
+            res.send({status:"failed", data:err});
+        }
+    })
+})
+
+app.post('/customer-service-request', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');     
+    console.log("--176--------")
+    console.log(req.body)
+
+    //    req send to createstudent  
+            studentCollection.update({_id:ObjectId(req.body.vendor_id)},{$push:{customer_requests:req.body.customer_request}},(err,result)=>{
+            if(!err)
+            {
+                console.log("updated");
+            res.send({status:"ok",data:"Service request sent succesfully"});
+            }
+            else{
+                console.log(err);
+            res.send({status:"failed",data:err});
+            }
+            })
+})
 
 // app.get('/view-business-details', bodyParser.json(),(req,res)=>{
 //     var studentCollection =connection.db('services').collection('users');   

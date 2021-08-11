@@ -53,7 +53,6 @@ export default function ViewBusinessDetails(props) {
               <td>{st.business_address}</td>
               <td> <button onClick= {()=>{doAction(st._id,"delete")}}>Delete</button></td>
              <td> <button onClick= {()=>{doAction(st._id,"update")}}>Update </button></td> 
-    
           </tr> 
      })
 

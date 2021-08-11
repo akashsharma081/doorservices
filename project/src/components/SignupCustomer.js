@@ -47,7 +47,7 @@ export default function SignupCustomer(props) {
         // alert(email);
         // alert(password);
         var s={
-           name,phone,address,email,password,role, vendor_services:[]
+           name,phone,address,email,password,role, vendor_services:[], customer_requests:[]
         }
        
         if(stId)

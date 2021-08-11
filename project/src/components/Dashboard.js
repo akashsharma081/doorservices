@@ -11,6 +11,7 @@ import React from 'react'
 import VendorService from './VendorService';
 import ViewBusinessDetails from "./ViewBusinessDetails";
 import ViewServiceDetails from "./ViewServiceDetails";
+import ViewCustomerRequests from './ViewCustomerRequests';
 
 export default function Dashboard(props) {
     const user = useSelector(state => state.user);
@@ -56,6 +57,10 @@ export default function Dashboard(props) {
                                 <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
                                View Business Details
                             </NavLink></div>}
+                            {user && user.role=="Vendor" && <div className="list-group-item"> <NavLink className="nav-link dip subheading1" to="/Dashboard/ViewCustomerRequests">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                               View Customer Requests
+                            </NavLink></div>}
                             {user && user.role=="Vendor" && <div className="list-group-item"> <NavLink className="nav-link dip subheading1" to="/Dashboard/ViewServiceDetails">
                                 <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
                                 View service Details
@@ -71,7 +76,10 @@ export default function Dashboard(props) {
                             <Route path="/Dashboard/BusinessDetails" exact component= {BusinessDetails} />
                             <Route path="/Dashboard/ListofUser" component= {ListofUser} />
                             <Route path="/Dashboard/ContactUs" component= {ContactUs} />
+                           
+                           
                             <Route path="/Dashboard/VendorService" component= {VendorService} />
+                            <Route path="/Dashboard/ViewCustomerRequests" component= {ViewCustomerRequests} />                            
                             <Route path="/Dashboard/ViewBusinessDetails" component= {ViewBusinessDetails} />
                             <Route path="/Dashboard/ViewServiceDetails" component= {ViewServiceDetails} />
                         </Switch>
