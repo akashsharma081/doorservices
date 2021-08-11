@@ -19,11 +19,10 @@ function ServicesListing(props) {
   }, []);
 
   function sendServiceRequest(){
-    
+      
   }
 
-
-
+ 
   useEffect(() => {
 
     // alert("in 24" + JSON.stringify(services));

@@ -52,7 +52,7 @@ export default function Header(props) {
                             {!user && <li ><Link to='/Login'>Login</Link></li>}     
                             {user && <li><Link to='/Dashboard'>Dashboard</Link></li>   }
                             {user && <li><Link to='/Login' onClick={logout} >Logout</Link></li>   }
-                            {user && <li> <Link > {user.name}</Link>  </li>}
+                            {user && <li> <Link >{user.name}</Link>  </li>}
                            
                         </ul>
                     </div>

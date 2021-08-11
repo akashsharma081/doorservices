@@ -12,13 +12,13 @@ export default function ViewBusinessDetails(props) {
     
         
         useEffect(() => {
-            alert("1");
+            // alert("1");
                axios.get('http://localhost:3001/list-users').then(
                 (res)=>{
                     console.log(res.data.data); 
-                    alert("1");
+                    // alert("1");
                     setUsers(res.data.data);
-                    alert("2");
+                    // alert("2");
                 }
             )          
           }, [])

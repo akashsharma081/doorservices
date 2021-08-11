@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 function VendorService(props) {
     const user = useSelector((state) => state.user);
-    const username= user.name;
+    const username= user.name;  // for use previous field name like name in another file we use like that line no. 7 nd 112
 
     const [service_title, setservice_title] = useState("");
     const [service_cost, setservice_cost] = useState("");
@@ -149,7 +149,7 @@ function VendorService(props) {
                       />
                     </div>
                     <br />
-                    <label for="inputimg">Business Description</label>           
+                    <label for="inputimg">Image</label>           
                     {/* onChange={(e)=>{productImgHandler}} */}
                     <input type="file" name="ProductImg" onClick={(e)=>{setValue(e);}} class="btn-block btn-md" id="inputimg" />
                      <button
