@@ -96,7 +96,7 @@ function VendorService(props) {
                      <label for="inputrole">Service Category</label>
                                 <select name="service_cat" value={service_category} onChange={(e)=>{setValue(e);}} class="btn-block btn-md " id="inputrole" required>
                                     <option value=" ">Select Category</option>
-                                    <option value="Hair Cut">HairCut</option>
+                                    <option value="HairCut">HairCut</option>
                                     <option value="Plumber">Plumber</option>
                                     <option value="Electricain">Electricain</option>
                                     <option value="Mechanic">Mechanic</option>

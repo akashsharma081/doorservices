@@ -6,7 +6,7 @@ import {NavLink, Route , Switch,Link} from 'react-router-dom';
 export default function ViewServiceDetails(props) { 
 
     const [users, setUsers] = useState([]);
-    
+  
         
     useEffect(() => {
   
@@ -19,28 +19,28 @@ export default function ViewServiceDetails(props) {
         )          
       }, [])
 
-function doAction(id , action){
-if(action === "delete")         
-{    console.log(id);
-    axios.get('http://localhost:3001/delete-users?id='+id).then(
-        (res)=>{
-            console.log(res.data.data); 
-                axios.get('http://localhost:3001/list-users').then(
-                (res)=>{
-                    console.log(res.data.data);  
-                //   alert(res.data.data);
-                    setUsers(res.data.data);
-                    
+        function doAction(id , action){
+                if(action === "delete")         
+                {    console.log(id);
+                    axios.get('http://localhost:3001/delete-users?id='+id).then(
+                        (res)=>{
+                            console.log(res.data.data); 
+                                axios.get('http://localhost:3001/list-users').then(
+                                (res)=>{
+                                    console.log(res.data.data);  
+                                //   alert(res.data.data);
+                                    setUsers(res.data.data);
+                                    
+                                }
+                                ) 
+                        }
+                    )
+                        }
+                else if(action==="update")
+                {
+                        props.history.push("/Dashboard/VendorService/"+id);
                 }
-                ) 
         }
-    )
-}
-else if(action==="update")
-{
-        props.history.push("/Dashboard/VendorService/"+id);
-}
-}
 
 var usersList = users.map((st)=>{
     return <tr key={st._id}>

@@ -186,7 +186,7 @@ app.post('/get-service-requests', bodyParser.json(),(req,res)=>{
 
 app.post('/customer-service-request', bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');     
-    console.log("--176--------")
+    console.log("------176--------")
     console.log(req.body)
 
     //    req send to createstudent  
@@ -203,18 +203,6 @@ app.post('/customer-service-request', bodyParser.json(),(req,res)=>{
             })
 })
 
-// app.get('/view-business-details', bodyParser.json(),(req,res)=>{
-//     var studentCollection =connection.db('services').collection('users');   
-//     studentCollection.findOne({_id:ObjectId(req.query.id)},function(err,docs){
-//         if(!err && result)
-//         {
-//             res.send({status:"ok",data:docs});
-//         }
-//         else{
-//             res.send({status:"failed",data:err});
-//         }
-//     })
-// });
 
 
 app.get('/list-contact',(req,res)=>{
