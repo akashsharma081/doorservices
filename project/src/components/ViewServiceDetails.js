@@ -1,20 +1,20 @@
 import React from 'react'
 import { useEffect } from 'react';
-import { useState,useSelector } from 'react';
+import { useState } from 'react';
+import {useSelector} from 'react-redux';
 import  axios from 'axios'; 
 import {NavLink, Route , Switch,Link} from 'react-router-dom';
 export default function ViewServiceDetails(props) { 
 
-    const [users, setUsers] = useState([]);
-  
+    const [vendorservices, setvendorService] = useState([]);
+    const user = useSelector(state => state.user)
         
     useEffect(() => {
   
-           axios.get('http://localhost:3001/list-users').then(
+           axios.post('http://localhost:3001/get-service-by-vendor', {vendor_id:user._id}).then(
             (res)=>{
                 console.log(res.data.data); 
-                setUsers(res.data.data);
-            
+                setvendorService(res.data.data);            
             }
         )          
       }, [])
@@ -29,7 +29,7 @@ export default function ViewServiceDetails(props) {
                                 (res)=>{
                                     console.log(res.data.data);  
                                 //   alert(res.data.data);
-                                    setUsers(res.data.data);
+                                    setvendorService(res.data.data);
                                     
                                 }
                                 ) 
@@ -42,8 +42,8 @@ export default function ViewServiceDetails(props) {
                 }
         }
 
-var usersList = users.map((st)=>{
-    return <tr key={st._id}>
+var vendorServiceList = vendorservices.map((st)=>{
+    return <tr key={Math.random}>
           <td>{st.service_category}</td>
           <td>{st.service_title}</td>
           <td>{st.service_cost}</td>
@@ -87,7 +87,7 @@ var usersList = users.map((st)=>{
                                         </tr>
                                     </tfoot>
                                 <tbody>
-                                   {usersList}
+                                   {vendorServiceList}
                                 </tbody>
                                 </table>
                             </div>

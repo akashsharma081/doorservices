@@ -184,6 +184,21 @@ app.post('/get-service-requests', bodyParser.json(),(req,res)=>{
     })
 })
 
+app.post('/get-service-by-vendor', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');
+    studentCollection.find({_id:ObjectId(req.body.vendor_id)}).toArray((err,docs)=>{
+        if(!err && docs.length>0)
+        {
+                       res.send({status:"ok", data:docs[0].vendor_services});
+        }
+        else{
+            res.send({status:"failed", data:err});
+        }
+    })
+})
+
+
+
 app.post('/customer-service-request', bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');     
     console.log("------176--------")
@@ -202,6 +217,44 @@ app.post('/customer-service-request', bodyParser.json(),(req,res)=>{
             }
             })
 })
+
+
+
+
+app.post('/update-customer-service-request', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');     
+    console.log("------226--------")
+    console.log(req.body)
+
+    //    req send to createstudent  
+            studentCollection.updateMany({_id:ObjectId(req.body.vendor_id)},
+                                     {$set:{"customer_requests.$[crequests].status":req.body.status_to}},
+                                    
+                                     {
+                                        arrayFilters: [{
+                                            "crequests.customer_email":req.body.customer_email,
+                                            "crequests.service_title":req.body.service_title,
+                                            "crequests.status":req.body.status_from,
+                                         }]
+                                      },
+                                    
+                                     
+                                     (err,result)=>{
+                                                        if(!err)
+                                                        {
+                                                            console.log("updated");
+                                                        res.send({status:"ok",data:"Service request sent succesfully"});
+                                                        }
+                                                        else{
+                                                            console.log(err);
+                                                        res.send({status:"failed",data:err});
+                                                        }
+                                })
+});
+
+
+
+
 
 
 

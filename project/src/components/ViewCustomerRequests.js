@@ -17,8 +17,23 @@ function ViewCustomerRequests(props) {
         })
     }, [])
 
-    function doAction(params) {
-        
+    function doAction(c_email, s_title, status_from, status_to) {
+        axios.post(baseUrl+"update-customer-service-request",
+            {   vendor_id:user._id, 
+                customer_email:c_email,
+                service_title:s_title,
+                status_from:status_from,
+                status_to:status_to})
+                .then((res)=>{
+             alert(JSON.stringify(res.data));
+
+             axios.post(baseUrl+"get-service-requests",{vendor_id:user._id}).then((res)=>{
+                // alert(JSON.stringify(res.data));
+                setrequest(res.data.data);
+                
+            })
+            
+        })
     }
 
     var requestList = request.map((st)=>{
@@ -26,8 +41,8 @@ function ViewCustomerRequests(props) {
               <td>{st.service_title}</td>
               <td>{st.customer_email}</td>
               <td>{st.status}</td>
-              <td> <button onClick= {()=>{doAction(st._id,"decline")}}>Decline</button></td>
-             <td> <button onClick= {()=>{doAction(st._id,"accept")}}>Accept </button></td> 
+              <td> <button onClick= {()=>{doAction(st.customer_email,st.service_title,st.status,"decline")}}>Decline</button></td>
+             <td> <button onClick= {()=>{doAction(st.customer_email,st.service_title,st.status,"accept")}}>Accept </button></td> 
           </tr> 
      })
 
