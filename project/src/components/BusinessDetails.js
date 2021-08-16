@@ -11,7 +11,11 @@ function BusinessDetails(props) {
   const [business_phone, setbusiness_phone] = useState("");
   const [business_address, setbusiness_address] = useState("");
 
+  const [uploadPercentage, setuploadPercentage] = useState("")
+
   var stId = props.match.params.id;
+
+  var businessLogo;
 
   useEffect(() => {
     if (stId) {
@@ -31,33 +35,76 @@ function BusinessDetails(props) {
     e.target.name == "Business_Name" && setbusiness_name(e.target.value);
     e.target.name == "Business_Phone" && setbusiness_phone(e.target.value);
     e.target.name == "Business_Address" && setbusiness_address(e.target.value);
+    e.target.name == "Business_Logo" && (businessLogo=e.target.files[0]);
   }
 
   function sendData() {
     
-    var s = {
-      business_details: { business_name, business_phone, business_address },
-      user: user,
-    };
+    var formData = new FormData();
 
-    alert(JSON.stringify(s));
+    formData.append("business_details",  JSON.stringify({ business_name, business_phone, business_address }) );
+    formData.append("user", JSON.stringify(user) );
+    formData.append("business_logo",businessLogo );
 
-    if (stId) {
-      s._id = stId;
-      axios.post("http://localhost:3001/update-users", s).then((res) => {
-        console.log(res.data);
-        alert(res.data);
-      });
-    } else {
-      console.log(s);
-      axios
-        .post("http://localhost:3001/add-business-details", s)
-        .then((res) => {
-          console.log(res.data);
-          alert(res.data);
-        });
-    }
-  }
+    console.log(formData);
+
+      //  axios
+      //   .post("http://localhost:3001/add-business-details", formData)
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     alert(res.data);
+      //   });
+
+
+
+
+
+        axios.post("http://localhost:3001/add-business-details",formData,{
+          headers:{
+              'Content-type': 'multipart/form-data'
+          },
+          onUploadProgress:function (progressEvent) {
+              console.log("file upload progress: " + progressEvent);
+              setuploadPercentage(parseInt(Math.round((progressEvent.loaded/progressEvent.total)*100)));
+          }
+        }).then((res)=>{
+            alert("Upload formData success");
+        }).catch((err)=>{
+            alert("Upload formData error");
+        })
+
+
+
+
+
+
+
+      }
+  // function sendData() {
+    
+  //   var s = {
+  //     business_details: { business_name, business_phone, business_address },
+  //     user: user,
+  //   };
+
+  //   alert(JSON.stringify(s));
+
+  //   if (stId) {
+  //     s._id = stId;
+  //     axios.post("http://localhost:3001/update-users", s).then((res) => {
+  //       console.log(res.data);
+  //       alert(res.data);
+  //     });
+  //   } else {
+  //     console.log(s);
+  //     axios
+  //       .post("http://localhost:3001/add-business-details", s)
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         alert(res.data);
+  //       });
+  //   }
+  // }
 
   return (
     <>
@@ -117,6 +164,21 @@ function BusinessDetails(props) {
                       placeholder="Enter your Business Address"
                     />
                   </div>
+
+
+                  <div>
+                    <label for="inputaddress">Business Logo</label>
+                    <br />
+                    <input
+                      type="file"                      
+                      onChange={(e) => {
+                        setValue(e);
+                      }}
+                      name="Business_Logo"                     
+                      class="btn-block btn-md"                      
+                    />
+                  </div>
+                 
                   <br />
                   <button
                     type="submit"
@@ -125,6 +187,9 @@ function BusinessDetails(props) {
                   >
                     Submit
                   </button>
+
+                      {uploadPercentage}%
+
                   <hr class="bg-dark" />
                   
                 {/* </form> */}

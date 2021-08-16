@@ -6,11 +6,18 @@ var cors = require('cors'); // response come from origin
 var bodyParser = require('body-parser'); // post request ke kaam aayega 
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId= require('mongodb').ObjectId;
+var upload = require('./multerConfig');
+var path = require("path");
 
 
 var app = express();
 
 app.use(cors());
+
+
+app.use(express.static(path.join(__dirname,"uploads")));
+
+
 var client = new MongoClient("mongodb+srv://serviceproject:serviceproject@cluster0.gww62.mongodb.net/services?retryWrites=true&w=majority",{useNewUrlParser:true , UseUnifiedTopology:true});
 // username,password : serviceproject
 // mongodb+srv://serviceproject:serviceproject@cluster0.gww62.mongodb.net/services?retryWrites=true&w=majority"
@@ -112,19 +119,53 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
 
 
 
+
+
+
+
 app.post ('/add-business-details', bodyParser.json(),(req,res)=>{
-    var studentCollection =connection.db('services').collection('users');     
-    //    req send to createstudent  
-            studentCollection.update({_id:ObjectId(req.body.user._id)},{$set:req.body.business_details},(err,result)=>{
-            if(!err)
-            {
-            res.send({status:"ok",data:"Business Details update succesfully"});
-            }
-            else{
-            res.send({status:"failed",data:err});
-            }
-            })
+    
+    
+    console.log("line 123----");
+upload(req,res,(error)=>{
+    if (error) {
+        console.log("error uploading image");
+        console.log(error);
+        res.send({ status: 'failed',data: error });
+    }else{
+
+        console.log("line 131 in index.js");
+
+        console.log(req.body);
+        console.log("fileimage",req.files);
+        var studentCollection =connection.db('services').collection('users');     
+        //    req send to createstudent  
+                studentCollection.update({_id:ObjectId(JSON.parse(req.body.user)._id)},{$set:{...(JSON.parse(req.body.business_details)),business_logo:req.files.business_logo[0].filename}},(err,result)=>{
+                
+                console.log(result);
+                console.log(err);
+                    if(!err)
+                {
+                res.send({status:"ok",data:"Business Details update succesfully"});
+                }
+                else{
+                res.send({status:"failed",data:err});
+                }
+                })
+    
+    }
+})
+
+
 });
+
+
+
+
+
+
+
+
 
 
 app.post ('/add-vendor-service', bodyParser.json(),(req,res)=>{
@@ -150,7 +191,7 @@ app.post('/get-services-by-category', bodyParser.json(),(req,res)=>{
             
             docs.forEach((u)=>{
               u.vendor_services &&  u.vendor_services.forEach((sr)=>{
-                    allServices.push({...sr,vendor_id:u._id } );
+                    allServices.push({...sr,vendor_id:u._id,business_logo:u.business_logo } );
                 })
             });
             console.log("---------153-------------")

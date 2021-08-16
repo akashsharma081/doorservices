@@ -42,6 +42,7 @@ function ServicesListing(props) {
                                                    <div key={Math.random} className="col-md-12">
                                                       {" "}
                                                       <h1>By:-{s.vendor_id}</h1>
+                                                      <img src={baseUrl+s.business_logo} alt="" />
                                                       <h3>{s.service_title}</h3>
                                                       <p>{s.service_cost}</p>
                                                       <p>{s.service_description}</p>
