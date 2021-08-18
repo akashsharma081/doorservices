@@ -23,6 +23,9 @@ export default function History() {
         return <tr >
               <td>{st.service_title}</td>
               <td>{st.customer_email}</td>
+              <td>{st.vendor_name}</td>
+              <td>{st.vendor_email}</td>
+              <td>{st.vendor_phone}</td>
               <td>{st.status}</td>
            </tr> 
      })
@@ -45,6 +48,9 @@ export default function History() {
                                             <tr>
                                                 <th>Service title</th>
                                                 <th>Cutomer Email</th>
+                                                <th>Vendor Name</th>
+                                                <th>Vendor Email</th>
+                                                <th>Vendor Contact</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>

@@ -217,10 +217,30 @@ app.post('/get-service-requests', bodyParser.json(),(req,res)=>{
 })
 app.post('/get-service-request', bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');
-    studentCollection.find({_id:ObjectId(req.body._id)}).toArray((err,docs)=>{
+    studentCollection.find({role:"Vendor"}).toArray((err,docs)=>{
         if(!err && docs.length>0)
         {
-                       res.send({status:"ok", data:docs[0].customer_requests});
+
+
+
+                    var customer_requests = [];
+                     docs.forEach((v)=>{
+                         
+                        v.customer_requests.forEach((cr)=>{
+                            if(cr.customer_id==req.body.customer_id)
+                            {
+                                customer_requests.push({...cr,vendor_name:v.name,vendor_phone:v.phone,vendor_email:v.email});
+                            }
+                        })
+                    
+                    
+                    }) 
+
+                    console.log("---line 239");
+                    console.log(customer_requests);
+
+
+                       res.send({status:"ok", data:customer_requests});
         }
         else{
             res.send({status:"failed", data:err});
