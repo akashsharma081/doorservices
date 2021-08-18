@@ -127,7 +127,7 @@ app.post ('/add-business-details', bodyParser.json(),(req,res)=>{
     
     
     console.log("line 123----");
-upload(req,res,(error)=>{
+ upload(req,res,(error)=>{
     if (error) {
         console.log("error uploading image");
         console.log(error);
@@ -155,16 +155,7 @@ upload(req,res,(error)=>{
     
     }
 })
-
-
 });
-
-
-
-
-
-
-
 
 
 
@@ -224,6 +215,18 @@ app.post('/get-service-requests', bodyParser.json(),(req,res)=>{
         }
     })
 })
+app.post('/get-service-request', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');
+    studentCollection.find({_id:ObjectId(req.body._id)}).toArray((err,docs)=>{
+        if(!err && docs.length>0)
+        {
+                       res.send({status:"ok", data:docs[0].customer_requests});
+        }
+        else{
+            res.send({status:"failed", data:err});
+        }
+    })
+})
 
 app.post('/get-service-by-vendor', bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');
@@ -260,8 +263,6 @@ app.post('/customer-service-request', bodyParser.json(),(req,res)=>{
 })
 
 
-
-
 app.post('/update-customer-service-request', bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');     
     console.log("------226--------")
@@ -294,11 +295,6 @@ app.post('/update-customer-service-request', bodyParser.json(),(req,res)=>{
 });
 
 
-
-
-
-
-
 app.get('/list-contact',(req,res)=>{
     var studentCollection =connection.db('services').collection('AddDetails');   
     studentCollection.find().toArray((err,docs)=>{
@@ -311,7 +307,6 @@ app.get('/list-contact',(req,res)=>{
         }
     })
 });
-
 
 
 app.get('/contact-by-id',(req,res)=>{
@@ -341,8 +336,6 @@ app.post('/contact-users',bodyParser.json(),(req,res)=>{
 });
 
 
-
-
 app.get('/delete-contact',(req,res)=>{
     var studentCollection =connection.db('services').collection('AddDetails');   
     studentCollection.remove({_id:ObjectId(req.query.id)},(err,result)=>{
@@ -355,7 +348,6 @@ app.get('/delete-contact',(req,res)=>{
         }
     })
 });
-
 
 
 app.post('/update-contact',bodyParser.json(),(req,res)=>{

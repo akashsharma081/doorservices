@@ -1936,3 +1936,23 @@ padding-top: 3px;
 	width: 500px;
 	background-color: #32c8de;
 }
+
+.img1{
+	border-radius: 50%;
+	width: 100px;
+	height: 100px; 
+	margin-left: 100px;
+	margin-top: 60px;
+	
+
+}
+
+.cmove1{
+	/* background-color: #32c8de; */
+	width: 50%;
+	margin-left: 200px;
+}
+
+.ty{
+	display: flex;
+}

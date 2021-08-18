@@ -48,18 +48,7 @@ function BusinessDetails(props) {
 
     console.log(formData);
 
-      //  axios
-      //   .post("http://localhost:3001/add-business-details", formData)
-      //   .then((res) => {
-      //     console.log(res.data);
-      //     alert(res.data);
-      //   });
-
-
-
-
-
-        axios.post("http://localhost:3001/add-business-details",formData,{
+          axios.post("http://localhost:3001/add-business-details",formData,{
           headers:{
               'Content-type': 'multipart/form-data'
           },
@@ -72,12 +61,6 @@ function BusinessDetails(props) {
         }).catch((err)=>{
             alert("Upload formData error");
         })
-
-
-
-
-
-
 
       }
   // function sendData() {

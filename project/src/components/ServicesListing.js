@@ -39,15 +39,20 @@ function ServicesListing(props) {
             
         setserviceCards(services.map((s) => {
                                                    return (
-                                                   <div key={Math.random} className="col-md-12">
-                                                      {" "}
-                                                      <h1>By:-{s.vendor_id}</h1>
-                                                      <img src={baseUrl+s.business_logo} alt="" />
-                                                      <h3>{s.service_title}</h3>
-                                                      <p>{s.service_cost}</p>
+                                                   <div key={Math.random} className="col-lg-8 col-lg-offset-2 centered main2">
+                                                      {/* <p>By:-{s.vendor_id}</p> */}
+                                                    <div class="row ty">
+                                                      <img class="img1" src={baseUrl+s.business_logo} alt="" /> 
+                                                      <div class="text-left cmove1 "> 
+                                                      <h3>Name: {s.service_title}</h3>
+                                                      <h4>Cost: {s.service_cost}</h4>
+                                                      <h3>Description : </h3>
                                                       <p>{s.service_description}</p>
-                                                      <button onClick={()=>{sendServiceRequest(s.vendor_id,s.service_title)}}>send Request</button>
-                                                      <hr/>
+                                                      <button onClick={()=>{sendServiceRequest(s.vendor_id,s.service_title)}}>Send Request</button> 
+                                                      </div>
+                                                    
+                                                    </div>
+                                                    <hr/>
                                                    </div>                                                   
                                                    );
                                                 }));

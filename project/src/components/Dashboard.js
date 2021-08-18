@@ -12,6 +12,7 @@ import VendorService from './VendorService';
 import ViewBusinessDetails from "./ViewBusinessDetails";
 import ViewServiceDetails from "./ViewServiceDetails";
 import ViewCustomerRequests from './ViewCustomerRequests';
+import History from './History';
 
 export default function Dashboard(props) {
     const user = useSelector(state => state.user);
@@ -65,6 +66,10 @@ export default function Dashboard(props) {
                                 <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
                                 View service Details
                             </NavLink></div>}
+                            {user && user.role=="Customer" && <div className="list-group-item"> <NavLink className="nav-link dip subheading1" to="/Dashboard/History">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                                History
+                            </NavLink></div>}
                             
                         </div>
                     </div>
@@ -82,6 +87,7 @@ export default function Dashboard(props) {
                             <Route path="/Dashboard/ViewCustomerRequests" component= {ViewCustomerRequests} />                            
                             <Route path="/Dashboard/ViewBusinessDetails" component= {ViewBusinessDetails} />
                             <Route path="/Dashboard/ViewServiceDetails" component= {ViewServiceDetails} />
+                            <Route path="/Dashboard/History" component= {History} />
                         </Switch>
                     </div>
                 </div>

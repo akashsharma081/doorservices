@@ -4,27 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 function VendorService(props) {
     const user = useSelector((state) => state.user);
-    const username= user.name;  // for use previous field name like name in another file we use like that line no. 7 nd 112
+    // const username= user.name;  // for use previous field name like name in another file we use like that line no. 7 nd 112
 
     const [service_title, setservice_title] = useState("");
     const [service_cost, setservice_cost] = useState("");
     const [service_description, setservice_description] = useState("");
     const [service_category, setservice_category] = useState("");
-    const [ProductImg, setProductImg] = useState("");
-    const [error,setError]=useState('');
-
-    const types=['image/png', 'image/jpg'];
-    const productImgHandler =(e)=>{
-      let selectedfiles = e.target.files[0];
-      if(selectedfiles && types.includes(selectedfiles.type)){
-        setProductImg(selectedfiles);
-        setError('');
-      }
-      else{
-        setProductImg(null);
-        setError('please select a valid image type png and jpg ');
-      }
-    }
+ 
   
     var stId = props.match.params.id;
   
@@ -49,13 +35,12 @@ function VendorService(props) {
       e.target.name == "service_cost" && setservice_cost(e.target.value);
       e.target.name == "service_description" && setservice_description(e.target.value);
       e.target.name == "service_cat" && setservice_category(e.target.value);
-      e.target.name == "ProductImg" && setProductImg(e.target.value);
     }
   
     function sendData() {
       
       var s = {
-        service_details: { service_category,service_title, service_cost, service_description ,ProductImg},
+        service_details: { service_category,service_title, service_cost, service_description },
         user: user,
       };
   
@@ -96,9 +81,9 @@ function VendorService(props) {
                      <label for="inputrole">Service Category</label>
                                 <select name="service_cat" value={service_category} onChange={(e)=>{setValue(e);}} class="btn-block btn-md " id="inputrole" required>
                                     <option value=" ">Select Category</option>
-                                    <option value="HairCut">HairCut</option>
+                                    <option value="Haircut">Haircut</option>
                                     <option value="Plumber">Plumber</option>
-                                    <option value="Electricain">Electricain</option>
+                                    <option value="Electrician">Electrician</option>
                                     <option value="Mechanic">Mechanic</option>
                                 </select> 
                      </div>
@@ -109,7 +94,7 @@ function VendorService(props) {
                       <br /> {/*name is use in function handleinput  */}
                       <input
                         type="text"
-                        value={username}
+                        value={service_title}
                         name="service_title"
                         id="inputname"
                         class="btn-block btn-md"
@@ -149,9 +134,6 @@ function VendorService(props) {
                       />
                     </div>
                     <br />
-                    <label for="inputimg">Image</label>           
-                    {/* onChange={(e)=>{productImgHandler}} */}
-                    <input type="file" name="ProductImg" onClick={(e)=>{setValue(e);}} class="btn-block btn-md" id="inputimg" />
                      <button
                       type="submit"
                       class="btn-primary btn-md"
