@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React,{useState,useEffect} from 'react';
 import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-router-dom';
-
+import { baseUrl } from "../config.js";
 export default function Contact(props) {
 
 
@@ -48,14 +48,14 @@ export default function Contact(props) {
 		if(s)
 		{  s.id=stId;
 			console.log(s)
-            axios.post('http://localhost:3001/update-contact',s).then((res)=>{
+            axios.post(baseUrl+'update-contact',s).then((res)=>{
 			console.log(res.data);
 			// alert(res.data);
 			})
 		}
 		else
         {
-			    axios.post('http://localhost:3001/contact-users',s).then((res)=>{
+			    axios.post(baseUrl+'contact-users',s).then((res)=>{
 				console.log(res.data); 
 				alert(res.data);
 				})

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Route, Switch, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { baseUrl } from "../config.js";
 import axios from "axios";
 
 function BusinessDetails(props) {
@@ -21,7 +22,7 @@ function BusinessDetails(props) {
     if (stId) {
       // here we fetch new api with which have id register and match with id
       // remember always the stId exist if you dont apply than this calling no sense
-      axios.get("http://localhost:3001/users-by-id?id=" + stId).then((res) => {
+      axios.get(baseUrl+"users-by-id?id=" + stId).then((res) => {
         // console.log(res.data.data);
         setbusiness_name(res.data.data[0].business_name);
         setbusiness_phone(res.data.data[0].business_name);
@@ -48,7 +49,7 @@ function BusinessDetails(props) {
 
     console.log(formData);
 
-          axios.post("http://localhost:3001/add-business-details",formData,{
+          axios.post(baseUrl+"add-business-details",formData,{
           headers:{
               'Content-type': 'multipart/form-data'
           },

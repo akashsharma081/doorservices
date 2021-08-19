@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import {useSelector} from 'react-redux';
 import  axios from 'axios'; 
+import { baseUrl } from "../config.js";
 import {NavLink, Route , Switch,Link} from 'react-router-dom';
 export default function ViewServiceDetails(props) { 
 
@@ -11,7 +12,7 @@ export default function ViewServiceDetails(props) {
         
     useEffect(() => {
   
-           axios.post('http://localhost:3001/get-service-by-vendor', {vendor_id:user._id}).then(
+           axios.post(baseUrl+'get-service-by-vendor', {vendor_id:user._id}).then(
             (res)=>{
                 console.log(res.data.data); 
                 setvendorService(res.data.data);            
@@ -22,10 +23,10 @@ export default function ViewServiceDetails(props) {
         function doAction(id , action){
                 if(action === "delete")         
                 {    console.log(id);
-                    axios.get('http://localhost:3001/delete-users?id='+id).then(
+                    axios.get(baseUrl+'delete-users?id='+id).then(
                         (res)=>{
                             console.log(res.data.data); 
-                                axios.get('http://localhost:3001/list-users').then(
+                                axios.get(baseUrl+'list-users').then(
                                 (res)=>{
                                     console.log(res.data.data);  
                                 //   alert(res.data.data);

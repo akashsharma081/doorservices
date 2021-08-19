@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect,useState } from 'react';
 import { useSelector } from 'react-redux';
 import  axios from 'axios'; 
+import { baseUrl } from "../config.js";
 import {NavLink, Route , Switch,Link} from 'react-router-dom';
 
 export default function ViewBusinessDetails(props) {
@@ -25,10 +26,10 @@ export default function ViewBusinessDetails(props) {
     function doAction(id , action){
             if(action === "delete")         
             {    console.log(id);
-                axios.get('http://localhost:3001/delete-users?id='+id).then(
+                axios.get(baseUrl+'delete-users?id='+id).then(
                     (res)=>{
                         console.log(res.data.data); 
-                            axios.get('http://localhost:3001/list-users').then(
+                            axios.get(baseUrl+'list-users').then(
                             (res)=>{
                                 console.log(res.data.data);  
                             //   alert(res.data.data);

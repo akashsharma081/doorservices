@@ -5,6 +5,7 @@ import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-ro
 import SignupCustomer from './SignupCustomer';
 import axios from 'axios';
 import { setUser } from '../actions/DoorServiceActions';
+import { baseUrl } from "../config.js";
 export default function Login(props) {
     
     const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export default function Login(props) {
     function logincheck(){
         // alert(email);
         // alert(password);
-        axios.post('http://localhost:3001/login-users',{email,password}).then((res)=>{
+        axios.post(baseUrl+'login-users',{email,password}).then((res)=>{
             // console.log(res.data);
             // setEmail(res.data.data);  // res.data.data is store in redux
             // setPassword(res.data.data);
@@ -82,14 +83,16 @@ export default function Login(props) {
                   <label for="password">Password</label><br/>
                   <input type="password" autoComplete="off"  value={password} onChange={(e)=>{auth(e)}}  name="Password" id="password" class="btn-block btn-md " placeholder="Enter Password" />
               </div>
-              <br />
+
+              
+              <br />   
               <button class='btn-primary btn-md' onClick={logincheck}>Login </button>
               <hr class="bg-dark"/>
               <Link to='/SignupCustomer' >
               <button class='btn-primary btn-lg '>Sign-up </button>
               </Link>
               <br/>
-            
+              <Link to='/ForgotPassword' class="btn-btn-primary">Forgot Password?</Link>
             {/* </form> */}
 
             </div>

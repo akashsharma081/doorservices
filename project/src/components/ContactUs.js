@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import  axios from 'axios'; 
 import {NavLink, Route , Switch,Link} from 'react-router-dom';
+import { baseUrl } from "../config.js";
 
 export default function ContactUs(props) {
 
@@ -10,7 +11,7 @@ export default function ContactUs(props) {
 
     //some error in useEffect 
     useEffect(() => {
-        axios.get('http://localhost:3001/list-contact').then(
+        axios.get(baseUrl+'list-contact').then(
             (res)=>{
                 // alert(res.data.data);
                 console.log(res.data.data); 
@@ -22,10 +23,10 @@ export default function ContactUs(props) {
     function doAction(id , action){
         if(action === "delete")         
             {    console.log(id);
-                axios.get('http://localhost:3001/delete-contact?id='+id).then(
+                axios.get(baseUrl+'delete-contact?id='+id).then(
                         (res)=>{
                             console.log(res.data.data);  // now row has been delete now we will update the row show we again call th list-client ,                             
-                            axios.get('http://localhost:3001/list-contact').then(
+                            axios.get(baseUrl+'list-contact').then(
                             (res)=>{
                                 console.log(res.data.data);  
                                 //   alert(res.data.data);

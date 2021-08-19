@@ -12,7 +12,7 @@ export default function History() {
     const [request, setrequest] = useState([]);
 
     useEffect(() => {
-        axios.post(baseUrl+"get-service-request",{customer_id:user._id}).then((res)=>{
+        axios.post(baseUrl+"history",{customer_id:user._id}).then((res)=>{
             // alert(JSON.stringify(res.data));
             setrequest(res.data.data);
         })
@@ -55,9 +55,12 @@ export default function History() {
                                             </tr>
                                         </thead>
                                         <tfoot>
-                                            <tr>
-                                            <th>Service title</th>
+                                        <tr>
+                                                <th>Service title</th>
                                                 <th>Cutomer Email</th>
+                                                <th>Vendor Name</th>
+                                                <th>Vendor Email</th>
+                                                <th>Vendor Contact</th>
                                                 <th>Status</th>
                                             </tr>
                                         </tfoot>

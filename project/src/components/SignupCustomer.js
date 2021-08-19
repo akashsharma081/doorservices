@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-router-dom';
 import Login from './Login';
 import axios from 'axios';
+import { baseUrl } from "../config.js";
 export default function SignupCustomer(props) {
 
     const [name, setname] = useState("");
@@ -18,7 +19,7 @@ export default function SignupCustomer(props) {
       if(stId){
        // here we fetch new api with which have id register and match with id 
        // remember always the stId exist if you dont apply than this calling no sense 
-        axios.get('http://localhost:3001/users-by-id?id='+stId).then(
+        axios.get(baseUrl+'users-by-id?id='+stId).then(
             (res)=>{
                 console.log(res.data.data); 
                 setname(res.data.data[0].name);
@@ -52,7 +53,7 @@ export default function SignupCustomer(props) {
        
         if(stId)
         {   s._id=stId;
-            axios.post('http://localhost:3001/update-users',s).then((res)=>{
+            axios.post(baseUrl+'update-users',s).then((res)=>{
             console.log(res.data); 
             alert(res.data);
             })
@@ -60,7 +61,7 @@ export default function SignupCustomer(props) {
         else
         {
             console.log(s)
-            axios.post('http://localhost:3001/create-users',s).then((res)=>{
+            axios.post(baseUrl+'create-users',s).then((res)=>{
               console.log(res.data);
               alert(res.data);
             })

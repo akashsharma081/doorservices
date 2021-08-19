@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Route, Switch, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { baseUrl } from "../config.js";
 function VendorService(props) {
     const user = useSelector((state) => state.user);
     // const username= user.name;  // for use previous field name like name in another file we use like that line no. 7 nd 112
@@ -18,7 +19,7 @@ function VendorService(props) {
       if (stId) {
         // here we fetch new api with which have id register and match with id
         // remember always the stId exist if you dont apply than this calling no sense
-        axios.get("http://localhost:3001/users-by-id?id=" + stId).then((res) => {
+        axios.get(baseUrl+"users-by-id?id=" + stId).then((res) => {
           // console.log(res.data.data);
           // setname(res.data.data[0].name);
           // setphone(res.data.data[0].phone);
@@ -48,14 +49,14 @@ function VendorService(props) {
   
       if (stId) {
         s._id = stId;
-        axios.post("http://localhost:3001/update-users", s).then((res) => {
+        axios.post(baseUrl+"update-users", s).then((res) => {
           console.log(res.data);
           alert(res.data);
         });
       } else {
         console.log(s);
         axios
-          .post("http://localhost:3001/add-vendor-service", s)
+          .post(baseUrl+"add-vendor-service", s)
           .then((res) => {
             console.log(res.data);
             alert(res.data);
