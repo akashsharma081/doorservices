@@ -1956,3 +1956,11 @@ padding-top: 3px;
 .ty{
 	display: flex;
 }
+
+.redalert{
+	background: #F8D7DA;
+	padding:8px 0; 
+	border-radius:5px;
+	color:#8B3E46;
+	border:1px solid #F5C6CB;
+}

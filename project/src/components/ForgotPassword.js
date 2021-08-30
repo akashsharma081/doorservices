@@ -3,16 +3,16 @@ import {useState} from 'react';
 import axios from 'axios';
 import { baseUrl } from "../config.js";
 export default function ForgotPassword() {
-    const [em,setEm] = useState("")
+    const [email,setEmail] = useState("")
     function setValue(e){
         
-        e.target.name==="Email" && setEm(e.target.value);
+        e.target.name==="Email" && setEmail(e.target.value);
         
     }
     function Sendpassword(){
-       alert(em)  
+       alert(email)  
        var  s={
-            em
+            email
         } 
         axios.post(baseUrl+'user-by-email',s).then((res)=>{
             console.log(res.data.data)
@@ -42,7 +42,7 @@ export default function ForgotPassword() {
                           <form>
                               <div class="form-floating mb-3">
                               <label for="inputEmail">Email</label>
-                                  <input class="form-control" id="inputEmail" type="email" name="Email" placeholder="name@example.com" value={em} onChange={(e)=>{setValue(e)}}/>
+                                  <input class="form-control" id="inputEmail" type="email" name="Email" placeholder="name@example.com" value={email} onChange={(e)=>{setValue(e)}}/>
                               </div> <br/>
                              <button type="button" className=" btn-primary" onClick={Sendpassword}>Send Password</button>
                              

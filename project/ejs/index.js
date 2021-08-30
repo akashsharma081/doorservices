@@ -8,12 +8,13 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId= require('mongodb').ObjectId;
 var upload = require('./multerConfig');
 var path = require("path");
+var app=express();
+var nodemailer = require('nodemailer');
 
 
 var app = express();
 
 app.use(cors());
-
 
 app.use(express.static(path.join(__dirname,"uploads")));
 
@@ -111,7 +112,7 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
         }
         else
         {
-          res.send({status:"ok", data:err})
+          res.send({status:"failed", data:err})
         }       
     })
 })
@@ -379,6 +380,68 @@ app.post('/update-contact',bodyParser.json(),(req,res)=>{
         }
     })
 });
+
+app.post('/user-by-email',bodyParser.json(),(req,res)=>{
+    console.log("email check");
+    console.log(req.body.email)
+    var VendorCollection=connection.db('services').collection('users');
+    console.log("var email check three"+ req.body.email)
+    VendorCollection.find({email:(req.body.email)}).toArray((err,result)=>{
+        console.log("updated student two")
+        if(!err && result.length>0){
+            console.log(result);
+            res.send({status:"ok" ,data:result})
+            console.log("email is match")
+        var n=result.map((e)=>{return e.name})
+        var i=result.map ((e)=>{return e.password})
+            sendMail("doorservices081@gmail.com", "1234567890@aA", req.body.email, "Welcome to Doorservice", ` your doorservice account  password is  `+i ) 
+        }
+        else{
+            res.send({status:"failed",data:err})
+        }
+    })
+})
+
+function sendMail(from, appPassword, to, subject,  htmlmsg)
+{
+    let transporter=nodemailer.createTransport(
+        {
+            host:"smtp.gmail.com",
+            port:587,
+            secure:false,
+            auth:
+            {
+             //  user:"weforwomen01@gmail.com",
+             //  pass:""
+             user:from,
+              pass:appPassword
+              
+    
+            }
+        }
+      );
+    let mailOptions=
+    {
+       from:from ,
+       to:to,
+       subject:subject,
+       html:htmlmsg
+    };
+    transporter.sendMail(mailOptions ,function(error,info)
+    {
+      if(error)
+      {
+        console.log(error);
+      }
+      else
+      {
+        console.log('Email sent:'+info.response);
+      }
+    });
+}
+
+
+
 
 
 app.listen(3001, ()=>{

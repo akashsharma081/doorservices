@@ -5,6 +5,13 @@ import axios from 'axios';
 import { baseUrl } from "../config.js";
 export default function SignupCustomer(props) {
 
+
+    const inputpassword1 = document.querySelector("#inputpassword1");
+    const inputpassword2 = document.querySelector("#inputpassword2");
+    const errorText = document.querySelector(".error-text");
+    const button = document.querySelector(".button");
+
+
     const [name, setname] = useState("");
     const [phone, setphone] = useState("");
     const [address, setaddress] = useState("");
@@ -67,6 +74,7 @@ export default function SignupCustomer(props) {
             })
         }
     }
+    
 
     return (
 <>
@@ -98,10 +106,15 @@ export default function SignupCustomer(props) {
                    <input type="text"  value={email} onChange={(e)=>{setValue(e)}} name="Email" id="inputemail" class="btn-block btn-md" placeholder="Enter Username or Email "/>
                </div>
                <br />
+               <div class="error-text redalert">Password Not Match</div>
                <div>
                    <label for="inputpassword">Password</label><br/>
-                   <input type="password"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword" class="btn-block btn-md " placeholder="Enter Password" />
+                   <input type="password"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword1" class="btn-block btn-md " placeholder="Enter Password" />
                </div>   <br />
+               <div>
+                   <label for="inputpassword">Confirm Password</label><br/>
+                   <input type="password"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword2" class="btn-block btn-md " placeholder="Enter Password" />
+               </div> 
                <label for="inputrole">Role</label>
                                 <select name="Role" value={role} onChange={(e)=>{setValue(e);}} class="btn-block btn-md " id="inputrole" required>
                                     <option value=" ">Select role</option>
@@ -120,10 +133,12 @@ export default function SignupCustomer(props) {
              </div>
          </div>
      </div>
+  
 
   </>
  
 
     )
 }
+
 

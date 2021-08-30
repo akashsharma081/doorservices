@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector , useDispatch} from 'react-redux';
 import {BrowserRouter as Router,Link , NaviLink , Switch , Route} from 'react-router-dom';
 import SignupCustomer from './SignupCustomer';
 import axios from 'axios';
 import { setUser } from '../actions/DoorServiceActions';
 import { baseUrl } from "../config.js";
 export default function Login(props) {
-    
+    const [users,setUsers] = useState([])
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+    
+
     function auth(e){
         e.target.name== "Email" && setEmail(e.target.value);
         e.target.name== "Password" && setPassword(e.target.value);
@@ -22,7 +23,7 @@ export default function Login(props) {
         // alert(email);
         // alert(password);
         axios.post(baseUrl+'login-users',{email,password}).then((res)=>{
-            // console.log(res.data);
+            console.log(res.data);
             // setEmail(res.data.data);  // res.data.data is store in redux
             // setPassword(res.data.data);
            
@@ -54,6 +55,8 @@ export default function Login(props) {
             (err)=>{console.log(err);}
         )
     }
+
+   
     
         return (
         <>

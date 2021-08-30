@@ -20,6 +20,7 @@ import Plumber from './components/Plumber';
 import Haircut from './components/Haircut';
 import ContactUs from './/components/ContactUs';
 import ServicesListing from './components/ServicesListing';
+import ForgotPassword from './components/ForgotPassword';
 
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
               <Route path='/Plumber' exact component={Plumber} />
               <Route path='/Haircut' exact component={Haircut} /> */}
               <Route path='/ContactUs' exact component={ContactUs} />
+              <Route path='/ForgotPassword' exact component={ForgotPassword} />
+
             
               
 
