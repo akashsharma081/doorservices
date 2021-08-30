@@ -16,6 +16,7 @@ var app = express();
 
 app.use(cors());
 
+app.use(express.static(path.join(__dirname,"build")));
 app.use(express.static(path.join(__dirname,"uploads")));
 
 
@@ -33,6 +34,10 @@ client.connect((err,db)=>{
       else{
           console.log("database could not connect");
       }
+})
+
+app.get('/',(req,res)=>{
+    res.sendFile('index.html');
 })
 
 
@@ -444,7 +449,7 @@ function sendMail(from, appPassword, to, subject,  htmlmsg)
 
 
 
-app.listen(3001, ()=>{
+app.listen(80, ()=>{
     console.log("Server is started on port 3001");
 })
 
