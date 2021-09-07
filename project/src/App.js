@@ -9,7 +9,6 @@ import Pricing from './components/Pricing';
 import Portfolio from './components/Portfolio';
 import Login from './components/Login';
 import SignupCustomer from './components/SignupCustomer';
-// import SignupVendor from './components/SignupVendor';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
@@ -21,6 +20,8 @@ import Haircut from './components/Haircut';
 import ContactUs from './/components/ContactUs';
 import ServicesListing from './components/ServicesListing';
 import ForgotPassword from './components/ForgotPassword';
+import Allbusinessdetails from './components/Allbusinessdetails';
+import Cart from './components/Cart';
 
 
 function App() {
@@ -49,9 +50,9 @@ function App() {
               <Route path='/Haircut' exact component={Haircut} /> */}
               <Route path='/ContactUs' exact component={ContactUs} />
               <Route path='/ForgotPassword' exact component={ForgotPassword} />
-
-            
-              
+              <Route path='/Allbusinessdetails' exact component={Allbusinessdetails} />
+              <Route path='/Cart' exact component={Cart} />
+           
 
 
           </Switch> 

@@ -38,32 +38,33 @@ function BusinessDetails(props) {
     e.target.name == "Business_Address" && setbusiness_address(e.target.value);
     e.target.name == "Business_Logo" && (businessLogo=e.target.files[0]);
   }
-
+// function use when we send the data text and any file format 
   function sendData() {
-    
-    var formData = new FormData();
+      
+        var formData = new FormData();
 
-    formData.append("business_details",  JSON.stringify({ business_name, business_phone, business_address }) );
-    formData.append("user", JSON.stringify(user) );
-    formData.append("business_logo",businessLogo );
+        formData.append("business_details",  JSON.stringify({ business_name, business_phone, business_address }) );
+        formData.append("user", JSON.stringify(user) );
+        formData.append("business_logo",businessLogo );
 
-    console.log(formData);
+        console.log(formData);
 
-          axios.post(baseUrl+"add-business-details",formData,{
-          headers:{
-              'Content-type': 'multipart/form-data'
-          },
-          onUploadProgress:function (progressEvent) {
-              console.log("file upload progress: " + progressEvent);
-              setuploadPercentage(parseInt(Math.round((progressEvent.loaded/progressEvent.total)*100)));
-          }
-        }).then((res)=>{
-            alert("Upload formData success");
-        }).catch((err)=>{
-            alert("Upload formData error");
-        })
+              axios.post(baseUrl+"add-business-details",formData,{
+              headers:{
+                  'Content-type': 'multipart/form-data'
+              },
+              onUploadProgress:function (progressEvent) {
+                  console.log("file upload progress: " + progressEvent);
+                  setuploadPercentage(parseInt(Math.round((progressEvent.loaded/progressEvent.total)*100)));
+              }
+            }).then((res)=>{
+                alert("Upload formData success");
+            }).catch((err)=>{
+                alert("Upload formData error");
+            })
 
-      }
+  }
+      // this function is use to send when text to send 
   // function sendData() {
     
   //   var s = {

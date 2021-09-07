@@ -45,4 +45,11 @@ var increaseCTR = function increaseCTR(value) {
 };
 
 exports.increaseCTR = increaseCTR;
-8000607847;
+
+export var addProductToCart = (t) => {
+  return {
+      type: "ADD_PRODUCT",
+      payload: t
+  }
+}
+

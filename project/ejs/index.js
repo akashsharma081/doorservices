@@ -11,7 +11,6 @@ var path = require("path");
 var app=express();
 var nodemailer = require('nodemailer');
 
-
 var app = express();
 
 app.use(cors());
@@ -121,11 +120,6 @@ app.post('/login-users',bodyParser.json(),(req,res)=>{
         }       
     })
 })
-
-
-
-
-
 
 
 
@@ -390,7 +384,7 @@ app.post('/user-by-email',bodyParser.json(),(req,res)=>{
     console.log("email check");
     console.log(req.body.email)
     var VendorCollection=connection.db('services').collection('users');
-    console.log("var email check three"+ req.body.email)
+    console.log("var email check three "+ req.body.email)
     VendorCollection.find({email:(req.body.email)}).toArray((err,result)=>{
         console.log("updated student two")
         if(!err && result.length>0){
@@ -399,7 +393,7 @@ app.post('/user-by-email',bodyParser.json(),(req,res)=>{
             console.log("email is match")
         var n=result.map((e)=>{return e.name})
         var i=result.map ((e)=>{return e.password})
-            sendMail("doorservices081@gmail.com", "1234567890@aA", req.body.email, "Welcome to Doorservice", ` your doorservice account  password is  `+i ) 
+            sendMail("doorservice081@gmail.com", "atouxldosijxuokz", req.body.email, "Welcome to Doorservice", ` your doorservice account  password is  `+i ) 
         }
         else{
             res.send({status:"failed",data:err})
@@ -445,11 +439,16 @@ function sendMail(from, appPassword, to, subject,  htmlmsg)
     });
 }
 
+app.get('*',function (err, req, res, next) {
+    console.error(err.stack)
+    res.sendFile('index.html');
+    // res.status(500).send('Something broke!')
+  })
 
 
 
 
-app.listen(80, ()=>{
+app.listen(3001, ()=>{
     console.log("Server is started on port 3001");
 })
 

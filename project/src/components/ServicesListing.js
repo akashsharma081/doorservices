@@ -1,12 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect ,useDispatch} from "react";
 import { baseUrl } from "../config.js";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { addProductToCart } from '../../actions/FlipCartActions';
 
 function ServicesListing(props) {
   var category = props.match.params.cat_name;
   const [services, setservices] = useState([]);
   const [serviceCards, setserviceCards] = useState([]);
+  const dispatch = useDispatch();
 
   const user = useSelector(state => state.user)
   
@@ -22,13 +24,21 @@ function ServicesListing(props) {
   }, []);
 
   function sendServiceRequest(vendor_id, service_title){
+    if(user){
       axios.post(baseUrl+"customer-service-request",
       {vendor_id, customer_request:{service_title,customer_id:user._id, customer_email:user.email,status:"pending"}}
       ).then((res)=>{
         alert(JSON.stringify(res.data));
       });
+    }
+    else{
+      props.history.push('/Login');
+    }
   }
 
+  function cart(s) {
+    dispatch(addProductToCart({ ...s, qty: 1 }));
+  }
  
   useEffect(() => {
 
@@ -48,7 +58,9 @@ function ServicesListing(props) {
                                                       <h4>Cost: {s.service_cost}</h4>
                                                       <h3>Description : </h3>
                                                       <p>{s.service_description}</p>
-                                                      <button onClick={()=>{sendServiceRequest(s.vendor_id,s.service_title)}}>Send Request</button> 
+                                                      <button onClick={function () { cart(s) }}>Add To Cart</button>
+                                                      <button class='btn-primary ' onClick={()=>{sendServiceRequest(s.vendor_id,s.service_title)}}>Send Request</button> 
+                                                      
                                                       </div>
                                                     
                                                     </div>

@@ -13,6 +13,8 @@ import ViewBusinessDetails from "./ViewBusinessDetails";
 import ViewServiceDetails from "./ViewServiceDetails";
 import ViewCustomerRequests from './ViewCustomerRequests';
 import History from './History';
+import Allbusinessdetails from './Allbusinessdetails';
+
 
 export default function Dashboard(props) {
     const user = useSelector(state => state.user);
@@ -42,6 +44,13 @@ export default function Dashboard(props) {
                              <NavLink className="nav-link dip subheading1" to="/Dashboard/ContactUs">
                                 <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
                               User Message 
+                            </NavLink>
+                            </div>
+                            }
+                        {user && user.role=="Admin" && <div className="list-group-item">
+                             <NavLink className="nav-link dip subheading1" to="/Dashboard/Allbusinessdetails">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                             View All Business details 
                             </NavLink>
                             </div>
                             }
@@ -80,14 +89,13 @@ export default function Dashboard(props) {
                             <Route path="/Dashboard/SignupCustomer/:id" exact component= {SignupCustomer} />
                             <Route path="/Dashboard/BusinessDetails" exact component= {BusinessDetails} />
                             <Route path="/Dashboard/ListofUser" component= {ListofUser} />
-                            <Route path="/Dashboard/ContactUs" component= {ContactUs} />
-                           
-                           
+                            <Route path="/Dashboard/ContactUs" component= {ContactUs} />                       
                             <Route path="/Dashboard/VendorService" component= {VendorService} />
                             <Route path="/Dashboard/ViewCustomerRequests" component= {ViewCustomerRequests} />                            
                             <Route path="/Dashboard/ViewBusinessDetails" component= {ViewBusinessDetails} />
                             <Route path="/Dashboard/ViewServiceDetails" component= {ViewServiceDetails} />
                             <Route path="/Dashboard/History" component= {History} />
+                            <Route path="/Dashboard/Allbusinessdetails" component= {Allbusinessdetails} />
                         </Switch>
                     </div>
                 </div>
