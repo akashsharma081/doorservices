@@ -21,6 +21,7 @@ import ContactUs from './/components/ContactUs';
 import ServicesListing from './components/ServicesListing';
 import ForgotPassword from './components/ForgotPassword';
 import Allbusinessdetails from './components/Allbusinessdetails';
+import ViewAllRequest from './components/ViewAllRequest';
 import Cart from './components/Cart';
 
 
@@ -40,23 +41,18 @@ function App() {
               <Route  path='/Login' component={Login} />
               <Route  path='/SignupCustomer' component={SignupCustomer} />
               <Route  path='/Dashboard' component={Dashboard} /> 
-              {/* <Route  path='/SignupVendor' component={SignupVendor} /> */}
-              <Route  path='/ListofUser' component={ListofUser} /> 
+             <Route  path='/ListofUser' component={ListofUser} /> 
               <Route  path='/ServicesListing/:cat_name' component={ServicesListing} /> 
-
-              {/* <Route path='/Electrician' exact component={Electrician} />
-              <Route path='/Mechanic' exact component={Mechanic} />
-              <Route path='/Plumber' exact component={Plumber} />
-              <Route path='/Haircut' exact component={Haircut} /> */}
               <Route path='/ContactUs' exact component={ContactUs} />
               <Route path='/ForgotPassword' exact component={ForgotPassword} />
               <Route path='/Allbusinessdetails' exact component={Allbusinessdetails} />
+              <Route path='/ViewAllRequest' exact component={ViewAllRequest} />
               <Route path='/Cart' exact component={Cart} />
            
 
 
           </Switch> 
-          <Footer/>
+          {/* <Footer/> */}
           </div>
       </Router>
   );

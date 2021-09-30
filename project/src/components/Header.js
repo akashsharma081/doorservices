@@ -43,7 +43,7 @@ export default function Header(props) {
                         </li>}
                           
                             <li><Link to='/Services'>Services</Link></li>
-                            <li><Link to='/Cart'>Cart</Link></li>
+                            {user && <li><Link to='/Cart'>Cart</Link></li>}
                             {!user && <li><Link to='/Portfolio'>Portfolio</Link></li>}
                             {!user && <li><Link to='/Pricing'>Pricing</Link></li>}
                             <li><Link to='/Contact'>Contact</Link></li>

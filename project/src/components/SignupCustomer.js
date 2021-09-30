@@ -7,7 +7,7 @@ export default function SignupCustomer(props) {
 
 
     const inputpassword1 = document.querySelector("#inputpassword1");
-    const inputpassword2 = document.querySelector("#inputpassword2");
+    // const inputpassword2 = document.querySelector("#inputpassword2");
     const errorText = document.querySelector(".error-text");
     const button = document.querySelector(".button");
 
@@ -39,6 +39,7 @@ export default function SignupCustomer(props) {
         )} 
        }, [])
 
+
     function setValue(e){
           e.target.name=="Name" && setname(e.target.value);
           e.target.name=="Phone" && setphone(e.target.value);
@@ -48,32 +49,80 @@ export default function SignupCustomer(props) {
           e.target.name== "Role" && setrole(e.target.value);
     }
   
-    function sendData(){
-        // alert(name);
-        // alert(phone);
-        // alert(address);
-        // alert(email);
-        // alert(password);
-        var s={
-           name,phone,address,email,password,role, vendor_services:[], customer_requests:[]
+
+    function sendData() {
+        var unRegex = /^[a-z0-9_-]{3,8}$/
+        var usernameV = document.getElementById('inputname').value
+
+        // var passRegex = /(?=(.[0-9]))(?=.[\!@#$%^&()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.[a-z])(?=(.[A-Z]))(?=(.)).{5,}/
+        var passRegex = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/
+        var passwordV = document.getElementById('inputpassword').value
+
+        var emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/
+        var emailV = document.getElementById('inputemail').value
+
+        if (name.length < 3) {
+            alert("username must be 3 char")
         }
-       
-        if(stId)
-        {   s._id=stId;
-            axios.post(baseUrl+'update-users',s).then((res)=>{
-            console.log(res.data); 
-            alert(res.data);
-            })
+        else if (!passRegex.test(passwordV)) {
+            alert("Password Should have 1 lowercase letter, 1 uppercase letter, 1 number, 1 special character and be at least 8 characters long")
         }
-        else
-        {
-            console.log(s)
-            axios.post(baseUrl+'create-users',s).then((res)=>{
-              console.log(res.data);
-              alert(res.data);
-            })
+        else if (!emailRegex.test(emailV)) {
+            alert("wrong email id")
         }
+        else if (phone.length != 10) {
+            alert("mobile number is incorrect")
+        }
+      
+
+        else {
+            var s={
+                       name,phone,address,email,password,role, vendor_services:[], customer_requests:[]
+                    }                 
+                    if(stId)
+                    {   s._id=stId;
+                        axios.post(baseUrl+'update-users',s).then((res)=>{
+                        console.log(res.data); 
+                        alert(res.data);
+                        })
+                    }
+                    else
+                    {
+                        console.log(s)
+                        axios.post(baseUrl+'create-users',s).then((res)=>{
+                          console.log(res.data);
+                          alert(res.data);
+                        })
+                    }
+                }
+        
     }
+    // function sendData(){
+    //     // alert(name);
+    //     // alert(phone);
+    //     // alert(address);
+    //     // alert(email);
+    //     // alert(password);
+    //     var s={
+    //        name,phone,address,email,password,role, vendor_services:[], customer_requests:[]
+    //     }
+       
+    //     if(stId)
+    //     {   s._id=stId;
+    //         axios.post(baseUrl+'update-users',s).then((res)=>{
+    //         console.log(res.data); 
+    //         alert(res.data);
+    //         })
+    //     }
+    //     else
+    //     {
+    //         console.log(s)
+    //         axios.post(baseUrl+'create-users',s).then((res)=>{
+    //           console.log(res.data);
+    //           alert(res.data);
+    //         })
+    //     }
+    // }
     
 
     return (
@@ -106,15 +155,15 @@ export default function SignupCustomer(props) {
                    <input type="text"  value={email} onChange={(e)=>{setValue(e)}} name="Email" id="inputemail" class="btn-block btn-md" placeholder="Enter Username or Email "/>
                </div>
                <br />
-               <div class="error-text redalert">Password Not Match</div>
+               {/* <div class="error-text redalert">Password Not Match</div> */}
                <div>
                    <label for="inputpassword">Password</label><br/>
-                   <input type="password"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword1" class="btn-block btn-md " placeholder="Enter Password" />
+                   <input type="text"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword" class="btn-block btn-md " placeholder="Enter Password" />
                </div>   <br />
-               <div>
-                   <label for="inputpassword">Confirm Password</label><br/>
-                   <input type="password"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword2" class="btn-block btn-md " placeholder="Enter Password" />
-               </div> 
+                {/* <div> */}
+                   {/* <label for="inputpassword">Confirm Password</label><br/> */}
+                    {/* <input type="password"  value={password} onChange={(e)=>{setValue(e)}} name="Password" id="inputpassword2" class="btn-block btn-md " placeholder="Enter Password" /> */} */}
+               {/* </div>  */}
                <label for="inputrole">Role</label>
                                 <select name="Role" value={role} onChange={(e)=>{setValue(e);}} class="btn-block btn-md " id="inputrole" required>
                                     <option value=" ">Select role</option>

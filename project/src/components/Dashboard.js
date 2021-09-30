@@ -14,6 +14,7 @@ import ViewServiceDetails from "./ViewServiceDetails";
 import ViewCustomerRequests from './ViewCustomerRequests';
 import History from './History';
 import Allbusinessdetails from './Allbusinessdetails';
+import ViewAllRequest from './ViewAllRequest';
 
 
 export default function Dashboard(props) {
@@ -51,6 +52,13 @@ export default function Dashboard(props) {
                              <NavLink className="nav-link dip subheading1" to="/Dashboard/Allbusinessdetails">
                                 <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
                              View All Business details 
+                            </NavLink>
+                            </div>
+                            }
+                        {user && user.role=="Admin" && <div className="list-group-item">
+                             <NavLink className="nav-link dip subheading1" to="/Dashboard/ViewAllRequest">
+                                <div className="sb-nav-link-icon iconspace"><i class="fas fa-table move1"></i></div>
+                             View All Request
                             </NavLink>
                             </div>
                             }
@@ -96,6 +104,7 @@ export default function Dashboard(props) {
                             <Route path="/Dashboard/ViewServiceDetails" component= {ViewServiceDetails} />
                             <Route path="/Dashboard/History" component= {History} />
                             <Route path="/Dashboard/Allbusinessdetails" component= {Allbusinessdetails} />
+                            <Route path="/Dashboard/ViewAllRequest" component= {ViewAllRequest} />
                         </Switch>
                     </div>
                 </div>

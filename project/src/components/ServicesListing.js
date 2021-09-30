@@ -1,8 +1,8 @@
-import React, { useState,useEffect ,useDispatch} from "react";
+import React, { useState,useEffect ,} from "react";
 import { baseUrl } from "../config.js";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { addProductToCart } from '../../actions/FlipCartActions';
+import { useDispatch,useSelector } from "react-redux";
+import { addProductToCart } from '../actions/FlipCartActions';
 
 function ServicesListing(props) {
   var category = props.match.params.cat_name;
