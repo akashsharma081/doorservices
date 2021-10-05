@@ -96,6 +96,9 @@ function VendorService(props) {
                       <input
                         type="text"
                         value={service_title}
+                        onChange={(e) => {
+                          setValue(e);
+                        }}
                         name="service_title"
                         id="inputname"
                         class="btn-block btn-md"

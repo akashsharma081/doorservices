@@ -80,16 +80,26 @@ app.get('/delete-users',(req,res)=>{
 
 app.post('/create-users',bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');   
-    studentCollection.insert(req.body,(err,result)=>{
-        if(!err)
-        {
-            res.send({status:"ok",data:"user Created succesfully"});
+
+    studentCollection.findOne({ email: req.body.email }).then(function (same) {
+
+        if (same) {
+
+            res.send("Email Id is already available")
+
+        } else {
+            studentCollection.insert(req.body,(err,result)=>{
+                if(!err)
+                {
+                    res.send({status:"ok",data:"user Created succesfully"});
+                }
+                else{
+                    res.send({status:"failed",data:err});
+                }
+            })
         }
-        else{
-            res.send({status:"failed",data:err});
-        }
-    })
-});
+})
+})
 
 app.post('/update-users',bodyParser.json(),(req,res)=>{
     var studentCollection =connection.db('services').collection('users');     
@@ -227,6 +237,33 @@ app.post('/history', bodyParser.json(),(req,res)=>{
                             {
                                 customer_requests.push({...cr,vendor_name:v.name,vendor_phone:v.phone,vendor_email:v.email});
                             }
+                        })
+                    
+                    
+                    }) 
+
+                    console.log("---line 239");
+                    console.log(customer_requests);
+
+
+                       res.send({status:"ok", data:customer_requests});
+        }
+        else{
+            res.send({status:"failed", data:err});
+        }
+    })
+})
+app.post('/history2', bodyParser.json(),(req,res)=>{
+    var studentCollection =connection.db('services').collection('users');
+    studentCollection.find({role:"Vendor"}).toArray((err,docs)=>{
+        if(!err && docs.length>0)
+        {
+                    var customer_requests = [];
+                     docs.forEach((v)=>{   
+                        v.customer_requests.forEach((cr)=>{
+                          
+                                customer_requests.push({...cr,vendor_name:v.name,vendor_phone:v.phone,vendor_email:v.email});
+                            
                         })
                     
                     

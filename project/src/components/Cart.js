@@ -2,7 +2,7 @@ import React from 'react'
 // import '../css/Cart.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { aCTR, dCTR, increaseCTR } from '../actions/FlipCartActions';
+import { aCTR, dCTR, increaseCTR } from '../actions/DoorServiceActions';
 
 function Cart() {
 
@@ -23,19 +23,19 @@ function Cart() {
    }
    console.warn(cart);
    var cart_items = cart.map(function (c) {
-      return <div key={c._id}>
+      return <div key={c.vendor_id}>
          <h4>{c.service_title} </h4>
          <h3>{c.service_cost} </h3>
          <div >
             <div className="ss">
-               <button onClick={function () { fun2(c._id) }}>-</button>
+               <button onClick={function () { fun2(c.vendor_id) }}>-</button>
                <p>
                   {c.qty}
                </p>
                <h4 className=""> ₹ {c.service_cost * c.qty}</h4><br />
                {/* <button onClick={fun}>+</button> */}
-               <button onClick={function () { fun(c._id) }}>+</button>
-               <h6> <Link onClick={function () { fun3(c._id) }}>Remove</Link></h6>
+               <button onClick={function () { fun(c.vendor_id) }}>+</button>
+               <h6> <Link onClick={function () { fun3(c.vendor_id) }}>Remove</Link></h6>
             </div>
          </div>
          <hr />

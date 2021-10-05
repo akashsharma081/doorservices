@@ -8,17 +8,18 @@ import { baseUrl } from "../config.js";
 function ViewAllRequest() {
     
     const user = useSelector(state => state.user)
+   
     const [request, setrequest] = useState([]);
 
     useEffect(() => {
-        axios.post(baseUrl+"history").then((res)=>{
+        axios.post(baseUrl+"history2").then((res)=>{
             // alert(JSON.stringify(res.data));
             setrequest(res.data.data);
         })
     }, [])
 
    
-    var requestList = request.map((st)=>{
+    var requestLists = request.map((st)=>{
         return <tr >
               <td>{st.service_title}</td>
               <td>{st.customer_email}</td>
@@ -66,7 +67,7 @@ function ViewAllRequest() {
                                        </tr>
                                    </tfoot>
                                <tbody>
-                                       {requestList}
+                                       {requestLists}
                                </tbody>
                                </table>
                            </div>

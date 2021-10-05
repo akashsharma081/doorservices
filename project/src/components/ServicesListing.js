@@ -2,7 +2,7 @@ import React, { useState,useEffect ,} from "react";
 import { baseUrl } from "../config.js";
 import axios from "axios";
 import { useDispatch,useSelector } from "react-redux";
-import { addProductToCart } from '../actions/FlipCartActions';
+import { addProductToCart } from '../actions/DoorServiceActions';
 
 function ServicesListing(props) {
   var category = props.match.params.cat_name;

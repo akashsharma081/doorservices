@@ -10,7 +10,7 @@ export default function History() {
     
     const user = useSelector(state => state.user)
     const [request, setrequest] = useState([]);
-
+  
     useEffect(() => {
         axios.post(baseUrl+"history",{customer_id:user._id}).then((res)=>{
             // alert(JSON.stringify(res.data));
@@ -26,7 +26,14 @@ export default function History() {
               <td>{st.vendor_name}</td>
               <td>{st.vendor_email}</td>
               <td>{st.vendor_phone}</td>
-              <td>{st.status}</td>
+              <td>
+                { 
+                    (st.status =='accept' ? <button class="bg-success">Accept</button> : 
+                        ( st.status =='decline' ? <button class="bg-danger">Delcine</button> :  
+                            (st.status =='pending'?<button class="bg-warning">Pending</button>:<button class="bg-warning">Pending</button>)))                      
+                }
+              </td>
+             
            </tr> 
      })
 
